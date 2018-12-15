@@ -38,6 +38,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+
+    ##TODO RETURN GLOBAL DATA##
     """Return the homepage."""
     return render_template("/index.html")
 
@@ -52,6 +54,8 @@ def countries():
 
     # Return a list of the column names (Country names)
     return jsonify(list(df.columns)[X:])
+
+
 
 ###################TO#DO#########################
 #Return JSON data of Migration Stats
