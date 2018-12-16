@@ -67,6 +67,16 @@ a[data-toggle="collapse"] {
     margin: 1.5vw;
   }
 
+.form-group {
+    background-color: rgba(255, 255, 255, 0)
+}
 
 
+#goTime {
+    display: block
+}
 
+
+#stopTime {
+    display: none
+}
