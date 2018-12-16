@@ -113,28 +113,22 @@
                    
                                
                         <div id="timeline">
-                                <form>
-                                        <div class="form-group">
-                                          <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
-                                          <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
-                                        </div>
-                                      </form>
-                        <!-- <input id="timeslider" type="text" data-slider-ticks="[0, 10, 20, 28]" 
-                        data-slider-ticks-snap-bounds="30" data-slider-ticks-labels='["1990", "2000", "2010", "2018"]' 
-                        data-slider-ticks-positions="[0, 10, 20, 28]" /> -->
-                  <!--This is a fairly straightforward d3.slider
-                        queries database for global data for selected year
+                            <form>
+                                <div class="form-group">
+                                    <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
+                                    <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
+                                </div>
+                            </form>
+        
+                        <!--queries database for global data for selected year
                         ALL of our Graphs should be responsive to  this-->
                         </div>
                         
-                        <div id="animatebutton">
-                    <!--  This Could Be a play/Pause button that moves the Timeline every X seconds  -->
-                    <!--  Maybe We include a speed element 2x, 0.5x, ect-->
-                        </div>
+
                         
-                        <div id="globe">
-                    <!-- if expandedgraph, View:Hidden-->
-                    <!--    Needs to be able to click on country to veiw that countries arrows-->
+                        <div id="globebox">
+                            <h2 id="current_country"></h2>
+                            <canvas id="globe"></canvas>
                         </div>
                         <div id="expandedgraph">
                     <!--    Default View: Hidden-->
@@ -157,10 +151,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <!-- this is for the sidebar -->
+  <!-- this is for the sidebar, we could make it scrollable, static for now -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
  <!-- Popper.JS  for dropdown arrows-->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+
+
+
 
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
