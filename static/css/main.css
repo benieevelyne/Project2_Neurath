@@ -84,8 +84,10 @@ a[data-toggle="collapse"] {
     display: none
 }
 
-#globebox{top: 0; right: 75vw; bottom: 0; left: 0;
-    /* margin: 50vh;    */
-    /* position: absolute !important; */
-    height: 75vh;
-    width: 66vw;}
+#globebox{top: 0; right: 0; bottom: 0; left: 17vw;;
+
+    /* margin-left:  */
+    position: absolute !important;
+    /* height: 100vh; */
+    width: 100vw;
+    z-index: -99;}
