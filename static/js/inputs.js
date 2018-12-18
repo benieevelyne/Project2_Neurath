@@ -16,6 +16,10 @@ slider.oninput = function() {
 goTime.on('click', function(){
     goTime.html("<i class='fas fa-pause-circle'></i><span>Pause Animation</span>")
     // label.classed("fa fa-stop-circle", true)
+        if (interval) {
+            console.log("interval clear?")
+            clearInterval(interval)
+        };
         var interval = setInterval(function() {
       
         slider.value ++,
