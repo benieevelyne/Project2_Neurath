@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+
 </head>
 
 <body onload="initialize()">
@@ -106,10 +109,6 @@
                             <button type="button" id="goTime" class="btn btn-info">
                                     <i class="fas fa-play-circle"></i>
                                     <span>Play Animation</span>
-                                </button>  
-                            <button type="button" id="stopTime" class="btn btn-info">
-                                    <i class="fas fa-pause-circle"></i>
-                                    <span>Pause Animation</span>
                                 </button>  
         
                     <div class="container-fluid">
