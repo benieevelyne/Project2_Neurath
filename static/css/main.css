@@ -15,6 +15,7 @@
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    margin-right: 1px;
 }
 #sidebar.active {
     margin-left: -33vw;
@@ -91,3 +92,4 @@ a[data-toggle="collapse"] {
     /* height: 100vh; */
     width: 100vw;
     z-index: -99;}
+
