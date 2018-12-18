@@ -81,3 +81,8 @@ a[data-toggle="collapse"] {
     display: none
 }
 
+#globebox{top: 0; right: 75vw; bottom: 0; left: 0;
+    /* margin: 50vh;    */
+    /* position: absolute !important; */
+    height: 75vh;
+    width: 66vw;}

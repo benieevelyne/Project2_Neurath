@@ -9,6 +9,7 @@ var goTime = d3.select('#goTime');
 slider.oninput = function() {
     label.html(`<h3>Year:<h3><h1><b>${slider.value}</b></h1>`)
 
+    
 };
 
 

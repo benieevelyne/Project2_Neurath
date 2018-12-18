@@ -12,13 +12,16 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
+
+  <script src="http://www.webglearth.com/v2/api.js"></script>
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
+<body onload="initialize()">
 
-   
     <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">
@@ -128,7 +131,7 @@
                         
                         <div id="globebox">
                             <h2 id="current_country"></h2>
-                            <canvas id="globe"></canvas>
+
                         </div>
                         <div id="expandedgraph">
                     <!--    Default View: Hidden-->
@@ -146,6 +149,7 @@
 
 
 </div>
+</body>
   
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
