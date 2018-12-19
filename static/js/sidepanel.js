@@ -5,7 +5,7 @@ $(document).ready(function () {
         $('#content').toggleClass('active');
 
         // this doesnt seem to work
-        // $('#globebox').attr('style',  ('left', 0))
+        $('#globebox').style('right', "0%")
     });
 
 });
