@@ -2,9 +2,13 @@ var earth;
 function initialize() {
   earth = new WE.map('globebox');
   earth.setView([46.8011, 8.2266], 3);
-  WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(earth);
+
+
+  WE.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.streets",
+    accessToken: API_KEY}).addTo(earth)
 
   // Start a simple rotation animation
   var before = null;
@@ -12,7 +16,7 @@ function initialize() {
       var c = earth.getPosition();
       var elapsed = before? now - before: 0;
       before = now;
-      earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
+      earth.setCenter([c[0], c[1] - 0.1*(elapsed/30)]);
       requestAnimationFrame(animate);
   });
 
@@ -38,8 +42,8 @@ function initialize() {
 
     d3.json('static/globe.geo.json', function(data) {
         // Creating a GeoJSON layer with the retrieved data
-        WE.geoJson(data).addTo(map);
+        WE  .geoJson(data).addTo(map);
       });
-    earth.setView([0,0], 5)
+    earth.setView([0,0], 3.25)
 
 };
