@@ -1,49 +1,75 @@
-// var earth;
-// function initialize() {
-//   earth = new WE.map('globebox');
-//   earth.setView([46.8011, 8.2266], 3);
+var viewer = new Cesium.Viewer('cesiumContainer', {
+    timeline: false,
+    // animation: false,
+    terrainProvider: Cesium.createWorldTerrain(),
+  
+});
+
+var tileset = viewer.scene.primitives.add(
+    new Cesium.Cesium3DTileset({
+        url: Cesium.IonResource.fromAssetId(3)
+    })
+);
 
 
-//   WE.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-//     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-//     maxZoom: 18,
-//     id: "mapbox.streets",
-//     accessToken: API_KEY}).addTo(earth)
+var promise = Cesium.GeoJsonDataSource.load('/static/globe.geo.json');
+promise.then(function(dataSource) {
+    viewer.dataSources.add(dataSource);
 
-//   // Start a simple rotation animation
-//   var before = null;
-//   requestAnimationFrame(function animate(now) {
-//       var c = earth.getPosition();
-//       var elapsed = before? now - before: 0;
-//       before = now;
-//       earth.setCenter([c[0], c[1] - 0.1*(elapsed/30)]);
-//       requestAnimationFrame(animate);
-//   });
+    //Get the array of entities
+    var entities = dataSource.entities.values;
 
-//     // Add a layer showing the state polygons.
+    var colorHash = {};
+    for (var i = 0; i < entities.length; i++) {
+        //For each entity, create a random color based on the state name.
+        //Some states have multiple entities, so we store the color in a
+        //hash so that we use the same color for the entire state.
+        var entity = entities[i];
+        var name = entity.name;
+        var color = colorHash[name];
+        if (!color) {
+            color = Cesium.Color.fromRandom({
+                alpha : .25
+            });
+            colorHash[name] = color;
+        }
 
-//     // data = d3.json('static/globe.geo.json')
-//     // .then( function(data) {
-//     // console.log("GeoJson Data Below ")
-//     // console.log(data); // <= object with loaded data
-//     // for (var i = 0; i < data.length; i++) {
+        //Set the polygon material to our random color.
+        entity.polygon.material = color;
+        //Remove the outlines.
+        entity.polygon.outline = false;
 
-//     //     // Set the data location property to a variable
-//     //     var location = data[i].location;
-    
-//     //     // Check for location property
-//     //     if (location) {
-    
-//     //       // Add a new marker to the cluster group and bind a pop-up
-//     //       markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
-//     //         .bindPopup(data[i].descriptor));
-//     //     }};
-//     // });
+        entity.polygon.extrudedHeight = 500000;
+    }
+}).otherwise(function(error){
+    //Display any errrors encountered while loading.
+    window.alert(error);
+});
+var camera = viewer.camera;
 
-//     d3.json('static/globe.geo.json', function(data) {
-//         // Creating a GeoJSON layer with the retrieved data
-//         WE  .geoJson(data).addTo(map);
-//       });
-//     earth.setView([0,0], 3.25)
+viewer.camera.flyTo({
+    destination : Cesium.Cartesian3.fromDegrees(-122.19, 46.25, 8000000.0),
+    orientation : {
+        right: new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339),
+        // heading : Cesium.Math.toRadians(0.0),
+        // pitch : Cesium.Math.toRadians(-35.0),
+        roll : 0.0
+    }
+});
 
-// };
+viewer.camera.
+
+var orangeOutlined = viewer.entities.add({
+    name : 'Orange line with black outline at height and following the surface',
+    polyline : {
+        clampToGround : true,
+        positions : Cesium.Cartesian3.fromDegreesArrayHeights([-75, 39, 2500000,
+                                                               -125, 39, 2500000]),
+        width : 5,
+        material : new Cesium.PolylineOutlineMaterialProperty({
+            color : Cesium.Color.ORANGE,
+            outlineWidth : 2,
+            outlineColor : Cesium.Color.BLACK
+        })
+    }
+});

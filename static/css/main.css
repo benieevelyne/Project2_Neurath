@@ -1,8 +1,11 @@
 
 .wrapper {
     display: flex;
+    margin: -100%;
     width: 100%;
+    height: 100%;
     align-items: stretch;
+    z-index: -99;
 }
 
 #sidebar {
@@ -20,6 +23,7 @@
     margin-left: -33vw;
 }
 #content  {
+    z-index: -50;
     margin-left:0;
 }
 

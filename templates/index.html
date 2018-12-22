@@ -13,22 +13,29 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 
-  <script src="http://www.webglearth.com/v2/api.js"></script>
-  <script src="node_modules/babel-core/browser-polyfill.js"></script>
-  <script src="node_modules/babel-core/browser.js"></script>
-  <script src="node_modules/es6-module-loader/dist/es6-module-loader.js"></script>
-  <script src="node_modules/systemjs/dist/system.js"></script>
+
+  <!-- <script src="{{ url_for('static', filename='node_modules/babel-core/browser-polyfill.js') }}"></script>
+  <script src="{{ url_for('static', filename='node_modules/babel-core/browser.js') }}"></script>
+  <script src="{{ url_for('static', filename='node_modules/es6-module-loader/dist/es6-module-loader.js') }}"></script>
+  <script src="{{ url_for('static', filename='node_modules/systemjs/dist/system.js') }}"></script>
+  <script type="text/babel" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
+
+  <script src="https://cesiumjs.org/releases/1.52/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesiumjs.org/releases/1.52/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
 
 
 </head>
-
-<!-- <body onload="initialize()"> -->
 <body>
+<!-- <body onload="initialize()"> -->
+
     <div class="wrapper">
             <!-- Sidebar -->
             <nav id="sidebar">
@@ -106,17 +113,17 @@
             </nav>
             <!-- Page Content -->
             <div id="content">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Toggle Sidebar</span>
-                            </button>
-                            <button type="button" id="goTime" class="btn btn-info">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Play Animation</span>
-                                </button>  
-        
+         
                     <div class="container-fluid">
-                   
+                            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Toggle Sidebar</span>
+                                    </button>
+                                    <button type="button" id="goTime" class="btn btn-info">
+                                            <i class="fas fa-play-circle"></i>
+                                            <span>Play Animation</span>
+                                        </button>  
+                
                                
                         <div id="timeline">
                             <form>
@@ -133,14 +140,10 @@
 
                         
                         <div id="globebox">
-                                <div id="info">
-                                        <h3>Interactive Maps - WebGL Demo</h3>
-                                        <div id="msg">Mouseover a country...</div>
-                                        <div>Click to rotate the globe</div>
-                                      </div>
-                                      <div id="loading">Loading...</div>
-                            <h2 id="current_country"></h2>
-
+           
+                            <div id="cesiumContainer"style="width: 100vw; height:100vh"></div>
+                            <!-- <div id="loadingOverlay"><h1>Loading...</h1></div> -->
+                   
                         </div>
                         <div id="expandedgraph">
                     <!--    Default View: Hidden-->
@@ -156,25 +159,12 @@
         </div>
         
 
-          <script>
-            System.config({
-              baseURL: '/',
-              map: {
-                d3: 'node_modules/d3/d3',
-                THREE: 'node_modules/three/three',
-                topojson: 'node_modules/topojson/build/topojson',
-                SubUnit: 'node_modules/src/index'
-              },
-              transpiler: 'babel'
-            });
-      
-            System.import('js/main');
-            </script>
-
+       
 
 </div>
 </body>
-  
+    <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -191,8 +181,7 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
   <!-- <script src="{{ url_for('static', filename='js/chordgraph.js') }}"></script> -->
-  <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+
   <script src="{{ url_for('static', filename='js/inputs.js') }}"></script>
   <!-- <script src="{{ url_for('static', filename='js/isotype.js') }}"></script> -->
   <script src="{{ url_for('static', filename='js/sidepanel.js') }}"></script>
