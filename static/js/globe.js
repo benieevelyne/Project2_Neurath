@@ -1,5 +1,5 @@
 var viewer = new Cesium.Viewer('cesiumContainer', {
-    timeline: false,
+    // timeline: false,
     // animation: false,
     terrainProvider: Cesium.createWorldTerrain(),
   
@@ -57,15 +57,15 @@ viewer.camera.flyTo({
     }
 });
 
-viewer.camera.
+
 
 var orangeOutlined = viewer.entities.add({
     name : 'Orange line with black outline at height and following the surface',
     polyline : {
         clampToGround : true,
-        positions : Cesium.Cartesian3.fromDegreesArrayHeights([-75, 39, 2500000,
-                                                               -125, 39, 2500000]),
-        width : 5,
+        positions : Cesium.Cartesian3.fromDegreesArrayHeights([-100, 39, 2500000,
+                                                               -125, -39, 2500000]),
+        width : 25,
         material : new Cesium.PolylineOutlineMaterialProperty({
             color : Cesium.Color.ORANGE,
             outlineWidth : 2,
