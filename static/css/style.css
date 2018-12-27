@@ -1,14 +1,6 @@
-body, html {
-  background-color: #333;
-  margin: 0px;
-  font-family: helvetica, arial;
-  color: white;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+html, body, #cesiumContainer {
+  width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+  font-family: sans-serif; color: #edffff;
 }
 
 
@@ -54,3 +46,21 @@ body, html {
   left: 0px;
 }
 
+#TextBox {
+  width: 15vw;
+  height: 25vh;
+  position: absolute;
+  top: 150px;
+  right: 35vw;
+  background: rgba(42, 42, 42, 0.0);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-size: 45px;
+}
+label {
+  cursor: pointer;
+}
+label:hover span {
+  text-decoration: underline;
+}v

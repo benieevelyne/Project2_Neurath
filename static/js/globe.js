@@ -1,3 +1,34 @@
+// function colorPick(gdp_md_est) {
+
+//     //  divided countries into 7 equal categories
+//     //    (190.0, 166.375, 142.75, 119.125, 95.5, 71.875, 48.25, 24.625, 1.0)
+//     // This is total gdp, in millijons
+ 
+//     if (gdp_md_est > 500000) {
+//         color = "CHARTREUSE";
+//     }   else if(gdp_md_est > 200000) {
+//         color = "PALEGREEN";
+//     }   else if(gdp_md_est > 70000) {
+//         color = "SKYBLUE";
+//     }   else if(gdp_md_est > 35000) {
+//         color = "PALEVIOLETRED";
+//     }   else if(gdp_md_est > 15000) {
+//         color = "SANDYBROWN";
+//     }   else if(gdp_md_est > 7000) {
+//         color = "ORANGERED";
+//     }   else if(gdp_md_est > 2000) {
+//         color = "RED";
+//     }   else {
+//         color = 'slategrey'
+//     }
+//     console.log(color)
+//     return color
+// };
+
+
+
+
+
 var viewer = new Cesium.Viewer('cesiumContainer', {
     // timeline: false,
     // animation: false,
@@ -18,29 +49,24 @@ promise.then(function(dataSource) {
 
     //Get the array of entities
     var entities = dataSource.entities.values;
-
-    var colorHash = {};
+  
     for (var i = 0; i < entities.length; i++) {
-        //For each entity, create a random color based on the state name.
-        //Some states have multiple entities, so we store the color in a
-        //hash so that we use the same color for the entire state.
-        var entity = entities[i];
-        var name = entity.name;
-        var color = colorHash[name];
-        if (!color) {
-            color = Cesium.Color.fromRandom({
-                alpha : .25
-            });
-            colorHash[name] = color;
-        }
 
-        //Set the polygon material to our random color.
-        entity.polygon.material = color;
+        var entity = entities[i];
+        var color = Cesium.Color.fromAlpha(Cesium.Color.RED, 0.2);
+
+        entity.polygon.material = color
         //Remove the outlines.
         entity.polygon.outline = false;
 
         entity.polygon.extrudedHeight = 500000;
+
+
+
     }
+
+
+
 }).otherwise(function(error){
     //Display any errrors encountered while loading.
     window.alert(error);
@@ -73,3 +99,5 @@ var orangeOutlined = viewer.entities.add({
         })
     }
 });
+
+
