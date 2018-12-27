@@ -13,19 +13,52 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 
-  <script src="http://www.webglearth.com/v2/api.js"></script>
+
+  <!-- <script src="{{ url_for('static', filename='node_modules/babel-core/browser-polyfill.js') }}"></script>
+  <script src="{{ url_for('static', filename='node_modules/babel-core/browser.js') }}"></script>
+  <script src="{{ url_for('static', filename='node_modules/es6-module-loader/dist/es6-module-loader.js') }}"></script>
+  <script src="{{ url_for('static', filename='node_modules/systemjs/dist/system.js') }}"></script>
+  <script type="text/babel" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
+
+  <script src="https://cesiumjs.org/releases/1.52/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesiumjs.org/releases/1.52/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
 
 
 </head>
+<body>
+<!-- <body onload="initialize()"> -->
 
-<body onload="initialize()">
-
+<!--queries database for global data for selected year
+ALL of our Graphs should be responsive to  this-->
+    <div id="timeline">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="fas fa-align-left"></i>
+                <span>Toggle Sidebar</span>
+                </button>
+                <button type="button" id="goTime" class="btn btn-info">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Play Animation</span>
+                    </button>  
+                <form>
+                        <div class="form-group">
+                            <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
+                            <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
+                        </div>
+                    </form>
+    </div>
     <div class="wrapper">
+
+
+
+ 
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header">
@@ -102,35 +135,24 @@
             </nav>
             <!-- Page Content -->
             <div id="content">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Toggle Sidebar</span>
-                            </button>
-                            <button type="button" id="goTime" class="btn btn-info">
-                                    <i class="fas fa-play-circle"></i>
-                                    <span>Play Animation</span>
-                                </button>  
-        
+         
                     <div class="container-fluid">
-                   
+                    
                                
-                        <div id="timeline">
-                            <form>
-                                <div class="form-group">
-                                    <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
-                                    <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
-                                </div>
-                            </form>
-        
-                        <!--queries database for global data for selected year
-                        ALL of our Graphs should be responsive to  this-->
-                        </div>
+               
                         
 
                         
                         <div id="globebox">
-                            <h2 id="current_country"></h2>
-
+           
+                            <div id="cesiumContainer"style="width: 100vw; height:100vh"></div>
+                            <!-- <div id="TextBox">
+                                This is a floating control panel<br/>
+                                with a translucent background color.
+                       
+                              </div> -->
+                            <!-- <div id="loadingOverlay"><h1>Loading...</h1></div> -->
+                   
                         </div>
                         <div id="expandedgraph">
                     <!--    Default View: Hidden-->
@@ -144,20 +166,22 @@
                 </nav>
             </div>
         </div>
+        
 
-
+       
 
 </div>
 </body>
-  
+    <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <!-- this is for the sidebar, we could make it scrollable, static for now -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
- <!-- Popper.JS  for dropdown arrows-->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 
 
 
@@ -166,8 +190,7 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
   <!-- <script src="{{ url_for('static', filename='js/chordgraph.js') }}"></script> -->
-  <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+
   <script src="{{ url_for('static', filename='js/inputs.js') }}"></script>
   <!-- <script src="{{ url_for('static', filename='js/isotype.js') }}"></script> -->
   <script src="{{ url_for('static', filename='js/sidepanel.js') }}"></script>
