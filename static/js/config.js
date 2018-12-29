@@ -29,3 +29,32 @@ var API_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MDFhN2E5Yi04Yj
 //     console.log(color)
 //     return color
 // };
+
+
+// https://gist.github.com/iwek/7154578
+function csvJSON(csv){
+
+    var lines=csv.split("\n");
+  
+    var result = [];
+  
+    var headers=lines[0].split(",");
+  
+    for(var i=1;i<lines.length;i++){
+  
+        var obj = {};
+        var currentline=lines[i].split(",");
+  
+        for(var j=0;j<headers.length;j++){
+            obj[headers[j]] = currentline[j];
+        }
+  
+        result.push(obj);
+  
+    }
+    
+    //return result; //JavaScript object
+    return JSON.stringify(result); //JSON
+  }
+
+
