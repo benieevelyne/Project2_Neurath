@@ -1,29 +1,3 @@
-// function colorPick(gdp_md_est) {
-
-//     //  divided countries into 7 equal categories
-//     //    (190.0, 166.375, 142.75, 119.125, 95.5, 71.875, 48.25, 24.625, 1.0)
-//     // This is total gdp, in millijons
- 
-//     if (gdp_md_est > 500000) {
-//         color = "CHARTREUSE";
-//     }   else if(gdp_md_est > 200000) {
-//         color = "PALEGREEN";
-//     }   else if(gdp_md_est > 70000) {
-//         color = "SKYBLUE";
-//     }   else if(gdp_md_est > 35000) {
-//         color = "PALEVIOLETRED";
-//     }   else if(gdp_md_est > 15000) {
-//         color = "SANDYBROWN";
-//     }   else if(gdp_md_est > 7000) {
-//         color = "ORANGERED";
-//     }   else if(gdp_md_est > 2000) {
-//         color = "RED";
-//     }   else {
-//         color = 'slategrey'
-//     }
-//     console.log(color)
-//     return color
-// };
 
 
 
@@ -43,7 +17,7 @@ var tileset = viewer.scene.primitives.add(
 );
 
 
-var promise = Cesium.GeoJsonDataSource.load('/static/globe.geo.json');
+var promise = Cesium.GeoJsonDataSource.load('/static/data/globeFinal.geo.json');
 promise.then(function(dataSource) {
     viewer.dataSources.add(dataSource);
 
