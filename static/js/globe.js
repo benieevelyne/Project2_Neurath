@@ -17,7 +17,7 @@ var tileset = viewer.scene.primitives.add(
 );
 
 
-var promise = Cesium.GeoJsonDataSource.load('/static/data/globeFinal.geo.json');
+var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
 promise.then(function(dataSource) {
     viewer.dataSources.add(dataSource);
 
@@ -27,13 +27,14 @@ promise.then(function(dataSource) {
     for (var i = 0; i < entities.length; i++) {
 
         var entity = entities[i];
-        var color = Cesium.Color.fromAlpha(Cesium.Color.RED, 0.2);
+        var entityColor = entity.color
+        var color = Cesium.Color.fromAlpha(Cesium.Color.entityColor, 0.2);
 
         entity.polygon.material = color
         //Remove the outlines.
         entity.polygon.outline = false;
 
-        entity.polygon.extrudedHeight = 500000;
+        entity.polygon.extrudedHeight = entitiy.TotalTrafficked * 10000;
 
 
 
