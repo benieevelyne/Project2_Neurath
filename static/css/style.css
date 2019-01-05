@@ -58,9 +58,11 @@ html, body, #cesiumContainer {
   border-radius: 5px;
   font-size: 45px;
 }
+
 label {
   cursor: pointer;
 }
+
 label:hover span {
   text-decoration: underline;
-}v
+}

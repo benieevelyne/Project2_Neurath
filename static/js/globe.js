@@ -17,9 +17,12 @@ var tileset = viewer.scene.primitives.add(
 );
 
 
-var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
+var promise = Cesium.GeoJsonDataSource.load('/static/data/globe.geo.json');
 promise.then(function(dataSource) {
+    var promise = Cesium.GeoJsonDataSource.load('/static/data/globe.geo.json');
+    promise.then(function(dataSource) {
     viewer.dataSources.add(dataSource);
+    viewer.dataSources.add(dataSource2);
 
     //Get the array of entities
     var entities = dataSource.entities.values;
@@ -27,25 +30,28 @@ promise.then(function(dataSource) {
     for (var i = 0; i < entities.length; i++) {
 
         var entity = entities[i];
-        var entityColor = entity.color
-        var color = Cesium.Color.fromAlpha(Cesium.Color.entityColor, 0.2);
+        console.log(entity, entity.name)
+        var entityColor = entity.properties.color
+        console.log(entityColor)
+        var color = Cesium.Color.fromAlpha(Cesium.Color.BROWN, 0.2);
 
         entity.polygon.material = color
         //Remove the outlines.
         entity.polygon.outline = false;
+        console.log(entity.properties.TotalTrafficked.value)
+        entity.polygon.extrudedHeight = entity.TotalTrafficked * 100000000;
 
-        entity.polygon.extrudedHeight = entitiy.TotalTrafficked * 10000;
 
 
-
-    }
+    }})
 
 
 
 }).otherwise(function(error){
     //Display any errrors encountered while loading.
-    window.alert(error);
+    window.alert(error)
 });
+
 var camera = viewer.camera;
 
 viewer.camera.flyTo({
@@ -74,5 +80,3 @@ var orangeOutlined = viewer.entities.add({
         })
     }
 });
-
-
