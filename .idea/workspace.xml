@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40622adc-87eb-43b5-958f-101628a34438" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/DataSets/Data Final.zip" beforeDir="false" />
-    </list>
+    <list default="true" id="40622adc-87eb-43b5-958f-101628a34438" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +65,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-31" />
-    <option name="y" value="547" />
+    <option name="x" value="64" />
+    <option name="y" value="701" />
     <option name="width" value="1260" />
     <option name="height" value="690" />
   </component>
@@ -176,15 +174,15 @@
       <updated>1545187348440</updated>
       <workItem from="1545187350378" duration="1218000" />
       <workItem from="1545508066198" duration="2694000" />
-      <workItem from="1546627763163" duration="777000" />
+      <workItem from="1546627763163" duration="1334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4689000" />
+    <option name="totallyTimeSpent" value="5246000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="17" y="568" width="1260" height="690" extended-state="1" />
+    <frame x="64" y="701" width="1260" height="690" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25779969" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -201,14 +199,14 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.32943144" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.32943144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="right" id="Database" order="6" sideWeight="0.49625936" visible="true" weight="0.32922825" />
+      <window_info active="true" anchor="right" id="Database" order="6" sideWeight="0.49625936" visible="true" weight="0.32922825" />
       <window_info anchor="right" x="0" y="0" width="265" height="490" id="Documentation" order="7" sideWeight="0.50374067" side_tool="true" visible="true" weight="0.32922825" />
     </layout>
   </component>
