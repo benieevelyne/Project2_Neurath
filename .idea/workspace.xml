@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40622adc-87eb-43b5-958f-101628a34438" name="Default Changelist" comment="" />
+    <list default="true" id="40622adc-87eb-43b5-958f-101628a34438" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/34ff8a79-854f-4669-aed8-832ec8f32f1e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/34ff8a79-854f-4669-aed8-832ec8f32f1e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataSets/sqlite_code.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/DataSets/sqlite_code.ipynb" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,21 +23,6 @@
       <set />
     </option>
     <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Countries_GDP" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Countries_GDP" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="Countries_GDP" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="db" type="feb32156:DbDataSourceImpl" />
@@ -64,9 +52,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="701" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="26" />
+    <option name="y" value="156" />
     <option name="width" value="1260" />
     <option name="height" value="690" />
   </component>
@@ -91,6 +79,17 @@
               <item name="Project2_Neurath" type="b2602c69:ProjectViewProjectNode" />
               <item name="Project2_Neurath" type="462c0819:PsiDirectoryNode" />
               <item name="DataSets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project2_Neurath" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Project2_Neurath" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project2_Neurath" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Project2_Neurath" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Project2_Neurath" type="b2602c69:ProjectViewProjectNode" />
@@ -174,15 +173,15 @@
       <updated>1545187348440</updated>
       <workItem from="1545187350378" duration="1218000" />
       <workItem from="1545508066198" duration="2694000" />
-      <workItem from="1546627763163" duration="1334000" />
+      <workItem from="1546627763163" duration="3194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5246000" />
+    <option name="totallyTimeSpent" value="7106000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="701" width="1260" height="690" extended-state="0" />
+    <frame x="-9" y="192" width="1260" height="690" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25779969" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
