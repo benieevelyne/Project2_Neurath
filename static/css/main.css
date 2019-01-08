@@ -9,6 +9,7 @@
 }
 
 #sidebar {
+    display: none;
     width: 33vw;
     position: fixed;
     top: 0;

@@ -33,6 +33,16 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 });
 
 
+var clock = new Cesium.Clock({
+    startTime : Cesium.JulianDate.fromIso8601("1990-01-01"),
+    currentTime : Cesium.JulianDate.fromIso8601("1990-01-01"),
+    stopTime : Cesium.JulianDate.fromIso8601("2018-12-31"),
+    clockRange : Cesium.ClockRange.LOOP_STOP,
+    clockStep : Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER,
+    shouldAnimate: true
+ });
+
+
 
 // //LOAD THE GEOJSON
 // var promise = Cesium.GeoJsonDataSource.load('/static/data/globe.geo.json');
@@ -185,14 +195,14 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 // );
 
 
-var promise = Cesium.GeoJsonDataSource.load('/static/data/miniGlobe.geo.json');
+var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
 promise.then(function(dataSource) {
     viewer.dataSources.add(dataSource);
 
 
         //Get the array of entities
         var entities = dataSource.entities.values;
-    
+        console.log(entities.length)
         for (var i = 0; i < entities.length; i++) {
 
             var entity = entities[i];
@@ -202,12 +212,14 @@ promise.then(function(dataSource) {
 
             console.log(entity, name)
 
-   
-            entity.polygon.material = Cesium.Color.ALICEBLUE;
+            UnitColor = entity['properties']['properties.color']['Value']
+            console.log(UnitColor)
+            entity.polygon.material = Cesium.Color.UnitColor;
             //Remove the outlines.
             entity.polygon.outline = false;
-            // console.log(entity['TraffickDict']['Total'])
-            entity.polygon.extrudedHeight = 1000000;
+            // console.log()
+            entity.polygon.extrudedHeight = entity['properties']['TrafficingStats']['Total'] * 10000;
+            entity.availability = Cesium.TimeInterval.fromIso8601(entity['properties']['Interval']);
 
 
         }
