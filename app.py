@@ -18,17 +18,19 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/PLACEHOLDER.sqlite"
-# db = SQLAlchemy(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+db = SQLAlchemy(app)
 
 # # reflect an existing database into a new model
-# Base = automap_base()
+Base = automap_base()
 # # reflect the tables
-# Base.prepare(db.engine, reflect=True)
+Base.prepare(db.engine, reflect=True)
 
 # # Save references to each table
-# PLACEHOLDER = Base.classes.PLACEHOLDER
-# PLACEHOLDER = Base.classes.PLACEHOLDER
+Countries_GDP = Base.classes.Countries_GDP
+Migration = Base.classes.MigrationCountsAge-Gender
+Migration_counts = Base.classes.NumberofPeopleMigrated_PerCountries_PerYear
+Trafficking = Base.classes.TraffickingCountsAge-Gender
 
 
 #################################################
@@ -45,12 +47,12 @@ def index():
 
 
 
-@app.route("/counties")
+@app.route("/countries")
 def countries():
     """Return a list of countries."""
 
     # Use Pandas to perform the sql query
-    BLAHBLAH = db.session.query(countries).BLAHBLAH
+    BLAHBLAH = db.session.query(Countries_GDP).BLAHBLAH
     df = pd.read_sql_query(BLAHBLAH, db.session.bind)
 
     # Return a list of the column names (Country names)
