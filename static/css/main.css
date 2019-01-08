@@ -91,8 +91,9 @@ a[data-toggle="collapse"] {
 }
 #timeline{
     width: 30vw;
-    /* position: relative; */
-    left: 5vw;
+
+    position: relative;
+    margin-left: 5vw;
     display: inline-block;
     z-index: 50;
 }

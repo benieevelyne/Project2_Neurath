@@ -36,27 +36,11 @@
 <body>
 <!-- <body onload="initialize()"> -->
 
-<!--queries database for global data for selected year
+<!-- queries database for global data for selected year
 ALL of our Graphs should be responsive to  this-->
-    <div id="timeline">
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
-                </button>
-                <button type="button" id="goTime" class="btn btn-info">
-                        <i class="fas fa-play-circle"></i>
-                        <span>Play Animation</span>
-                    </button>  
-                <form>
-                        <div class="form-group">
-                            <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
-                            <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
-                        </div>
-                    </form>
-    </div>
+
+
     <div class="wrapper">
-
-
 
  
             <!-- Sidebar -->
@@ -135,12 +119,35 @@ ALL of our Graphs should be responsive to  this-->
             </nav>
             <!-- Page Content -->
             <div id="content">
+                    <div id="timeline">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                    <i class="fas fa-align-left"></i>
+                                    <span>Toggle Sidebar</span>
+                                    </button>
+                                    <button type="button" id="goTime" class="btn btn-info">
+                                            <i class="fas fa-play-circle"></i>
+                                            <span>Play Animation</span>
+                                        </button>  
+                                    <form>
+                                            <div class="form-group">
+                                                <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
+                                                <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
+                                            </div>
+                                        </form>
+                        </div>
+                    
+        
+        
+        
          
                     <div class="container-fluid">
                     
                                
                
-                        
+                        <div id="isotypebox">
+
+                            
+                        </div>
 
                         
                         <div id="globebox">
@@ -174,8 +181,9 @@ ALL of our Graphs should be responsive to  this-->
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<!-- <script src="{{ url_for('static', filename='js/czmlBuilder.js') }}"></script> -->
 <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
-<script src="{{ url_for('static', filename='js/czmlBuilder.js') }}"></script>
+
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

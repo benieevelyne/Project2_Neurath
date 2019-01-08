@@ -33,42 +33,56 @@ var TraffickingCZML = [{
 d3.json('static/data/globe.geo.json').then(function (globe) {
 if( globe ) {
     d3.json('/static/data/TraffickingGDPCounts.json').then(function (trafficking) {
-    console.log(globe.features)
-    console.log(trafficking)
+    // console.log(globe.features)
+    // console.log(trafficking)
 
-    for (feature in globe.features) {
-        console.log(feature)}
-    for (item in globe.features) {
-        console.log(item)
-        var geometyrPacket ={ 
+
+    var TrafficArray = trafficking;
+    var arr = globe.features;   
+
+    for (var i = 0; i < arr.length; i++){
+        var obj = arr[i];
+        // console.log(obj['geometry']['coordinates'])
+
+
+        for (var n = 0; n < TrafficArray.length; n++){
+            var traffickObj = TrafficArray[n];
+            // console.log(traffickObj['properties.code'], obj['properties']['iso_a2'])
+            if (traffickObj['properties.code'] == obj['properties']['iso_a2']) {
+                console.log(obj['properties']['iso_a2']) 
+        
+    
+    
+    
+                var geometryPacket ={ 
     
 
-        "id" : item.code,
-        "name" : item.name,
-    // availability: year + '-01-01T00:00:00.000Z' + '/' + year + '-12-31T23:59:59.999Z',
-        "polygon" : {
-            "positions" : {
-                "cartographicDegrees" :  Cesium.Cartesian3.fromDegreesArray([item.geometry.coordinates])
-            },
-            // TODO MAKE TIME INTERACTIVE
+                "id" : obj['properties']['postal'],
+                "name" : obj['properties']['geounit'],
+               // availability: year + '-01-01T00:00:00.000Z' + '/' + year + '-12-31T23:59:59.999Z',
+                "polygon" : {
+                    "positions" : {
+                        "cartographicDegrees" :  Cesium.Cartesian3(obj['geometry']['coordinates'])
+                    },
+                    // TODO MAKE TIME INTERACTIVE
 
-            "material" : {
-                "solidColor" : {
-                    "color" : country.color
+                    "material" : {
+                        "solidColor" : {
+                            "color" : traffickObj['properties.color']
+                        }
+                    },
+                    // TODO MAKE TIME INTERACTIVE
+                    "extrudedHeight" : 1000 * traffickObj['Total'],
+                    "perPositionHeight" : true,
+                    "outline" : true,
+                    "outlineColor" : {
+                        "rgba" : [0, 0, 0, 255]
+                    }
                 }
-            },
-            // TODO MAKE TIME INTERACTIVE
-            "extrudedHeight" : 1000 * country.totalTrafficked,
-            "perPositionHeight" : true,
-            "outline" : true,
-            "outlineColor" : {
-                "rgba" : [0, 0, 0, 255]
-            }
-        }
-        }};
-    console.log(geometyrPacket);
-    czml.push(geometryPacket);
-    
+                };
+            console.log(geometryPacket);
+            TraffickingCZML.push(geometryPacket);
+        };
 
 
 // for (country in item.countries) {
@@ -101,7 +115,7 @@ if( globe ) {
 //             };
 //         };
 //         czml.push(linePacket)
-//         ;
+        // ;
 //     };
 
 // TraffickingCZML[0].clock.interval = '1995' + '-01-01T00:00:00.000Z/'+ "2017" + '-12-31T23:59:59.999Z';
@@ -114,8 +128,8 @@ if( globe ) {
 //     //     # destination = 
         
 
+}};     
             
-            
-});
+})}
 }
-});
+);
