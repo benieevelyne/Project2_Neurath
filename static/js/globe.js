@@ -50,13 +50,13 @@ promise.then(function(dataSource) {
 
 
 
-viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(-122.19, 46.25, 8000000.0),
-    orientation : {
-        right: new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339),
-        roll : 0.0
-    }
-});
+// viewer.camera.flyTo({
+//     destination : Cesium.Cartesian3.fromDegrees(-122.19, 46.25, 8000000.0),
+//     orientation : {
+//         right: new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339),
+//         roll : 0.0
+//     }
+// });
 
 
 
