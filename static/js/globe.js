@@ -44,10 +44,10 @@ promise.then(function(dataSource) {
             var entity = entities[i];            
             entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
             objColor = entity.properties.color._value;
-            console.log(objColor)
+            // console.log(objColor)
             
-            entity.polygon.material = Cesium.Color.objColor
-            entity.polygon.outline = true;
+            entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5)
+            entity.polygon.outline = false;
             
             // //  entity.properties.TrafficingStats.Total * 10000;
             // entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval._value);    
