@@ -1,0 +1,42 @@
+
+
+.form-group {
+    background-color: rgba(255, 255, 255, 0)
+}
+
+
+#goTime {
+    display: block;
+    width: 150px;
+    height: 35px;
+    background-color: #253245;
+    outline: none;
+}
+
+
+#stopTime {
+    display: none
+}
+
+/* html, body{padding: 0; margin: 0;} */
+#globebox{ top: 0; right: -33%; bottom: 0; left: 0; position: absolute !important; 
+    /* z-index: -99; */
+    width: 100vw;
+}
+#timeline{
+    margin-top: 7px;
+    width: 200px;
+
+    position: relative;
+    margin-left: 1vw;
+    display: block;
+    z-index: 50;
+}
+#timeSlider{
+    margin-top: -17px;
+    width: 150px;
+}
+
+.cesium-viewer-animationContainer {
+        right: 5vw;
+}
