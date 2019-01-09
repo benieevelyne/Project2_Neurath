@@ -27,10 +27,10 @@ Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 
 # # Save references to each table
-Countries_GDP = Base.classes.Countries_GDP
-Migration = Base.classes.MigrationCountsAge-Gender
-Migration_counts = Base.classes.NumberofPeopleMigrated_PerCountries_PerYear
-Trafficking = Base.classes.TraffickingCountsAge-Gender
+Countries_GDP = Base.classes.gdp
+Migration = Base.classes.mig_age_gen
+Migration_counts = Base.classes.df_mig_year
+Trafficking = Base.classes.trafficking_counts
 
 
 #################################################
