@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Dashboard</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Plugin CSS -->
+  <link href="../static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/freelancer.min.css" rel="stylesheet">
+  <link href="../static/css/style.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Human Trafficking and Migration dashboard</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
+            </li>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Graphs</a>
+          </li>
+
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Maps</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container">
+
+      <h1 class="text-uppercase mb-0">Human Trafficking and Migration</h1>
+      <img class="img-fluid" src="../static/img/TIPSOM_Website.jpg" alt="">
+      <hr class="star-light">
+      <h2 class="font-weight-light mb-0">WTMD</h2>
+    </div>
+  </header>
+  <!-- About Section -->
+  <section class="bg-primary text-white mb-0" id="about">
+
+    <h2 class="text-center text-uppercase text-white">Goals</h2>
+    <hr class="star-light mb-5">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 ml-auto">
+        
+        <p class="lead">&emsp;Analyzing number of people that migrated over time</p>
+        <p class="lead">&emsp;Analyzing number of victims trafficked for different reasons</p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 mr-auto">
+        <p class="lead">&emsp;Determine effect of GDP, Gender, age and other reasons impacting the number of people migrated or number of people trafficked.</p>
+        <p class="lead">&emsp;Spatial analysis of host countries locations.</p>
+      </div>
+  </section>
+  <!-- Portfolio Grid Section -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Total number of people that migrated per country and age group over 1990 - 2017</h2>
+      <hr class="star-dark mb-5">
+
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="text-center">
+            <select id="countrySelectStackedBar" onchange="optionChangedStackedBar()"></select>
+          </div>
+        </div>
+		
+		
+
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div id='stackedBar'></div>
+        </div>
+      </div>
+      <div>
+        <hr class="star-dark mb-5">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Comparing Two Countries</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="text-center">
+              <select id="genderSelectCumulativeLine" onchange="optionChangedComparisonCharts()"></select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="text-center">
+              <select id="mSelectCumulativeLine" onchange="optionChangedComparisonCharts()"></select>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <br>
+          <p>Select Countries to Compare:</p>
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <select id="countrySelectComparisonPlots1" onchange="optionChangedComparisonCharts()"></select>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <select id="countrySelectComparisonPlots2" onchange="optionChangedComparisonCharts()"></select>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+      
+
+      <!-- ************************************************************************************************* -->
+      <hr class="star-dark mb-5">
+      <h2 class="text-center text-uppercase text-secondary mb-0">Relationship between GDP and the number of people migrating</h2>
+      <hr class="star-dark mb-5">
+      <div class="row">
+
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+          <div class="text-center">
+            <select id="genderSelectDemographicScatter" onchange="optionChangedDemographicScatter()"></select>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+          <div class="text-center">
+            <select id="dalSelectDemographicScatter" onchange="optionChangedDemographicScatter()"></select>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+          <div class="text-center">
+            <select id="sportSelectDemographicScatter" onchange="optionChangedDemographicScatter()"></select>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+          <div class="text-center">
+            <select id="yearSelectDemographicScatter" onchange="optionChangedDemographicScatter()"></select>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="text-center">
+          <p>Select Demographic To Plot:</p>
+          <select id="demographicSelect" onchange="optionChangedDemographicScatter()"></select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <div id="demographicScatterPlot"></div>
+        </div>
+      </div>
+    </div>
+
+   
+
+  </section>
+
+
+
+  <!-- Contact Section -->
+
+
+  <!-- Footer -->
+  <footer class="footer text-center ">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-4 mb-5 mb-lg-0 ">
+          <h4 class="text-uppercase mb-4 ">Powered by: Evelyne Benie, Xander, Mike and Matt</h4>
+          <a href="https://github.com/benieevelyne">
+            
+
+        </div>
+        <div class="col-md-4 mb-5 mb-lg-0 ">
+
+          <li class="list-inline-item ">
+            <a href="https://github.com/benieevelyne/Project2_Neurath">
+              <span class="fa-stack fa-lg ">
+                <i class="fa fa-circle fa-stack-2x "></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse "></i>
+
+            </a>
+          </li>
+          </ul>
+        </div>
+        <div class="col-md-4 ">
+          <a href="https://bootcamp.umn.edu/data/">
+            UMN Data Science, Visualization and Analytics Boot Camp,2018 </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded " href="#page-top ">
+      <i class="fa fa-chevron-up "></i>
+    </a>
+  </div>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Portfolio Modal 5 -->
+  <div class="portfolio-modal mfp-hide " id="portfolio-modal-5 ">
+    <div class="portfolio-modal-dialog bg-black ">
+      <a class="close-button d-none d-md-block portfolio-modal-dismiss " href="# ">
+        <i class="fa fa-3x fa-times "></i>
+      </a>
+
+
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="../static/vendor/jquery/jquery.min.js "></script>
+      <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
+
+      <!-- Plugin JavaScript -->
+      <script src="../static/vendor/jquery-easing/jquery.easing.min.js "></script>
+      <script src="../static/vendor/magnific-popup/jquery.magnific-popup.min.js "></script>
+
+      <!-- Contact Form JavaScript -->
+      <script src="../static/js/jqBootstrapValidation.js "></script>
+      <script src="../static/js/contact_me.js "></script>
+
+      <!-- Custom scripts for this template -->
+      <script src="../static/js/freelancer.min.js "></script>
+
+      <script src="https://cdn.plot.ly/plotly-latest.min.js "></script>
+      <script src="/static/js/nouislider.min.js "></script>
+      <!-- <script src="/static/js/logic.js "> </script> -->
+      <script src="{{ url_for( 'static', filename='js/dashboard.js' ) }} "></script>
+
+</body>
+
+</html>
