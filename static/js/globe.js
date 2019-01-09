@@ -1,45 +1,82 @@
-var earth;
-function initialize() {
-  earth = new WE.map('globebox');
-  earth.setView([46.8011, 8.2266], 3);
-  WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(earth);
 
-  // Start a simple rotation animation
-  var before = null;
-  requestAnimationFrame(function animate(now) {
-      var c = earth.getPosition();
-      var elapsed = before? now - before: 0;
-      before = now;
-      earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
-      requestAnimationFrame(animate);
-  });
+Cesium.Ion.defaultAccessToken = API_TOKEN
 
-    // Add a layer showing the state polygons.
+// var viewer = new Cesium.Viewer('cesiumContainer', { infoBox : false });
+var clock = new Cesium.Clock({
+    startTime : Cesium.JulianDate.fromIso8601('1990-01-01'),
+    currentTime : Cesium.JulianDate.fromIso8601('1990-01-01'),
+    stopTime : Cesium.JulianDate.fromIso8601('2018-12-31'),
+    clockRange : Cesium.ClockRange.LOOP_STOP, // loop when we hit the end time
+    clockStep : Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER,
+    multiplier : 4000, // how much time to advance each tick
+    shouldAnimate : true // Animation on by default
+ });
+ 
+ var viewer = new Cesium.Viewer('cesiumContainer', {
+    animation : false,
+    timeline : false,
+ });
 
-    // data = d3.json('static/globe.geo.json')
-    // .then( function(data) {
-    // console.log("GeoJson Data Below ")
-    // console.log(data); // <= object with loaded data
-    // for (var i = 0; i < data.length; i++) {
 
-    //     // Set the data location property to a variable
-    //     var location = data[i].location;
-    
-    //     // Check for location property
-    //     if (location) {
-    
-    //       // Add a new marker to the cluster group and bind a pop-up
-    //       markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
-    //         .bindPopup(data[i].descriptor));
-    //     }};
-    // });
 
-    d3.json('static/globe.geo.json', function(data) {
-        // Creating a GeoJSON layer with the retrieved data
-        WE.geoJson(data).addTo(map);
-      });
-    earth.setView([0,0], 5)
 
-};
+
+var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
+
+
+promise.then(function(dataSource) {
+    viewer.dataSources.add(dataSource);
+
+
+
+
+        //Get the array of entities
+        var entities = dataSource.entities.values;
+
+        console.log("Total Entities: " + entities.length);
+        for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];            
+            entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
+            objColor = entity.properties.color._value;
+        
+            entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5)
+            entity.polygon.outline = false;
+                   
+            // entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval._value);    
+
+
+        };
+  
+    });
+
+
+
+// viewer.camera.flyTo({
+//     destination : Cesium.Cartesian3.fromDegrees(-122.19, 46.25, 8000000.0),
+//     orientation : {
+//         right: new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339),
+//         roll : 0.0
+//     }
+// });
+
+
+
+
+// console.log(viewer.entities._entities);  //SHOWS ALL THE ENTITIES I WOULD EXPECT
+
+// var orangeOutlined = viewer.entities.add({
+//     name : 'Orange line with black outline at height and following the surface',
+//     polyline : {
+//         clampToGround : true,
+//         positions : Cesium.Cartesian3.fromDegreesArrayHeights([-100, 39, 2500000,
+//                                                                -125, -39, 2500000]),
+//         width : 25,
+//         material : new Cesium.PolylineOutlineMaterialProperty({
+//             color : Cesium.Color.ORANGE,
+//             outlineWidth : 2,
+//             outlineColor : Cesium.Color.BLACK
+//         })
+//     }
+// });
+
+ 
