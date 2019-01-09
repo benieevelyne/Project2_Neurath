@@ -23,14 +23,6 @@
 #sidebar.active {
     margin-left: -33vw;
 }
-#content  {
-    /* z-index: -50; */
-    margin-left:0;
-}
-
-#content.active {
-    margin-left: 33vw;
-}
 
 li{
     padding-left: 2vw;

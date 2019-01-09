@@ -24,33 +24,38 @@ var clock = new Cesium.Clock({
 
 
 var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
+
+setTimeout(function(){
+console.log("timeout over")
+console.log( viewer.dataSources)
+}, 5000);
+
 promise.then(function(dataSource) {
     viewer.dataSources.add(dataSource);
 
 
+
+
         //Get the array of entities
         var entities = dataSource.entities.values;
+
         console.log("Total Entities: " + entities.length);
         for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];
-
-            var UnitColor = entity.properties.color;
-
-
-            console.log("Total Trafficked: " + entity.TraffickingStats.Total);
-            console.log(entity.properties, "name" +  entity.name);
-            console.log("Color" + UnitColor);
-
-
-            entity.polygon.material = Cesium.Color.UnitColor;
-            entity.polygon.outline = false;
-            entity.polygon.extrudedHeight = entity.properties.TrafficingStats.Total * 10000;
-            entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval);
+            var entity = entities[i];            
+            entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
+            objColor = entity.properties.color._value;
+            console.log(objColor)
+            
+            entity.polygon.material = Cesium.Color.objColor
+            entity.polygon.outline = true;
+            
+            // //  entity.properties.TrafficingStats.Total * 10000;
+            // entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval._value);    
 
 
         };
+  
     });
-
 
 
 
