@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
   <link rel="shortcut icon" href="">
-  <script src="{{ url_for('static', filename='js/config.js') }}"></script>
 
 
 </head>
@@ -31,7 +30,7 @@
 
 
         <!-- Page Content -->
-        <!-- <div id="timeline">
+        <div id="timeline">
      
                 <button type="button" id="goTime" class="btn btn-info">
                         <i class="fas fa-play-circle"></i>
@@ -39,12 +38,12 @@
                     </button>  
                 <form>
                     <div class="form-group">
-                        <label for="formControlRange" id="timesliderlabel"><h3>Year :<h3> <h1><b>1990</b></h1></label>
+                        <label for="formControlRange" id="timesliderlabel"><h1><b>1990</b></h1></label>
                         <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
                     </div>
                 </form>
         </div>
-         -->
+        
 
 
     <div id="content">
@@ -68,7 +67,7 @@
     </div>
 
 </body>
-
+<script src="{{ url_for('static', filename='js/config.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
 <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

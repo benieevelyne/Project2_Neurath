@@ -6,7 +6,11 @@
 
 
 #goTime {
-    display: block
+    display: block;
+    width: 150px;
+    height: 35px;
+    background-color: #253245;
+    outline: none;
 }
 
 
@@ -20,15 +24,19 @@
     width: 100vw;
 }
 #timeline{
-    width: 30vw;
+    margin-top: 7px;
+    width: 200px;
 
     position: relative;
-    margin-left: 5vw;
+    margin-left: 1vw;
     display: block;
-    /* z-index: 50; */
+    z-index: 50;
+}
+#timeSlider{
+    margin-top: -17px;
+    width: 150px;
 }
 
-
-/* .cesium-viewer-animationContainer {
+.cesium-viewer-animationContainer {
         right: 5vw;
-} */
+}

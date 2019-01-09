@@ -1,5 +1,5 @@
 
-
+Cesium.Ion.defaultAccessToken = API_TOKEN
 
 // var viewer = new Cesium.Viewer('cesiumContainer', { infoBox : false });
 var clock = new Cesium.Clock({
@@ -13,7 +13,8 @@ var clock = new Cesium.Clock({
  });
  
  var viewer = new Cesium.Viewer('cesiumContainer', {
-     clockViewModel : new Cesium.ClockViewModel(clock)
+    animation : false,
+    timeline : false,
  });
 
 
@@ -79,6 +80,3 @@ promise.then(function(dataSource) {
 // });
 
  
-// $(viewer._animation.container).css('visibility', 'hidden'); 
-// $(viewer._timeline.container).css('visibility', 'hidden'); 
-// viewer.forceResize();

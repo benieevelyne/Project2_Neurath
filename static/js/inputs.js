@@ -8,7 +8,7 @@ var isplaying = false
 var IntervalId = null
 
 slider.oninput = function() {
-    label.html(`<h3>Year:<h3><h1><b>${slider.value}</b></h1>`)
+    label.html(`<h1><b>${slider.value}</b></h1>`)
     if (isplaying == true) {stop(IntervalId)};  
 };
 
@@ -17,7 +17,7 @@ slider.oninput = function() {
 go = function() {
     console.log(slider.value)
     slider.value ++;
-    label.html(`<h3>Year:<h3><h1><b>${slider.value}</b></h1>`);
+    label.html(`<h1><b>${slider.value}</b></h1>`);
 
 };
 
