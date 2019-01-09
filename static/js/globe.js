@@ -1,23 +1,20 @@
 
 
-var viewer = new Cesium.Viewer('cesiumContainer', {
-    shouldAnimate : true,
-    terrainProvider: Cesium.createWorldTerrain(),
-});
 
-
+// var viewer = new Cesium.Viewer('cesiumContainer', { infoBox : false });
 var clock = new Cesium.Clock({
-    startTime : Cesium.JulianDate.fromIso8601("1990-01-01"),
-    currentTime : Cesium.JulianDate.fromIso8601("1990-01-01"),
-    stopTime : Cesium.JulianDate.fromIso8601("2018-12-31"),
-    clockRange : Cesium.ClockRange.LOOP_STOP,
+    startTime : Cesium.JulianDate.fromIso8601('1990-01-01'),
+    currentTime : Cesium.JulianDate.fromIso8601('1990-01-01'),
+    stopTime : Cesium.JulianDate.fromIso8601('2018-12-31'),
+    clockRange : Cesium.ClockRange.LOOP_STOP, // loop when we hit the end time
     clockStep : Cesium.ClockStep.SYSTEM_CLOCK_MULTIPLIER,
-    shouldAnimate: true
+    multiplier : 4000, // how much time to advance each tick
+    shouldAnimate : true // Animation on by default
  });
-
-
-
-
+ 
+ var viewer = new Cesium.Viewer('cesiumContainer', {
+     clockViewModel : new Cesium.ClockViewModel(clock)
+ });
 
 
 
@@ -25,10 +22,6 @@ var clock = new Cesium.Clock({
 
 var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
 
-setTimeout(function(){
-console.log("timeout over")
-console.log( viewer.dataSources)
-}, 5000);
 
 promise.then(function(dataSource) {
     viewer.dataSources.add(dataSource);
@@ -44,12 +37,10 @@ promise.then(function(dataSource) {
             var entity = entities[i];            
             entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
             objColor = entity.properties.color._value;
-            // console.log(objColor)
-            
+        
             entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5)
             entity.polygon.outline = false;
-            
-            // //  entity.properties.TrafficingStats.Total * 10000;
+                   
             // entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval._value);    
 
 
@@ -88,4 +79,6 @@ viewer.camera.flyTo({
 // });
 
  
-
+// $(viewer._animation.container).css('visibility', 'hidden'); 
+// $(viewer._timeline.container).css('visibility', 'hidden'); 
+// viewer.forceResize();

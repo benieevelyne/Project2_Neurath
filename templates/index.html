@@ -27,89 +27,12 @@
 
 </head>
 <body>
-<div class="wrapper">
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Human Trafficking Dashboard</h3>
-        </div>
-    
-        <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
-                
-            <li class="active">
-                <a href="#graphSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">Graph</a>
-                <ul class="collapse list-unstyled" id="graphSubmenu">
 
-                    <!-- these a tags will call the server -->
-                    <li>
-                        <a href="#">ISOTYPE</a>
-                    </li>
-                    <li>
-                        <a href="#">CHORD</a>
-                    </li>
-                    <li>
-                        <a href="#">GLOBE</a>
-                    </li>
-                    <li>
-                        <a href="#">Bonus</a>
-                    </li>
-                </ul>
-            </li>
-                
-                
-            <li id="graphlocation">
-                graph here from JAVASCRIPT
-            </li>
-
-
-            <li>
-                <a href="#countrySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Countries</a>
-                <ul class="collapse list-unstyled" id="countrySubmenu">
-                    <!-- TODO
-                    USE JAVASCRIPT TO POPULATE THIS 
-                        -->
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="#ResourcesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Resources</a>
-                <ul class="collapse list-unstyled" id="ResourcesSubmenu">
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-            </li>
-                </ul>
-            <li>
-                METADATA HERE FROM JAVASCRIPT
-            </li>
-
-        </ul>
-    
-    </nav>
 
 
         <!-- Page Content -->
-    <div id="content">
-        <div id="timeline">
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
-                </button>
+        <!-- <div id="timeline">
+     
                 <button type="button" id="goTime" class="btn btn-info">
                         <i class="fas fa-play-circle"></i>
                         <span>Play Animation</span>
@@ -121,9 +44,11 @@
                     </div>
                 </form>
         </div>
-        
+         -->
 
 
+    <div id="content">
+    
 
 
         <div class="container-fluid">
@@ -138,9 +63,10 @@
                 <div id="cesiumContainer"></div>           
             </div>
 
-        </nav>
+
+        </div>
     </div>
-</div>
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
