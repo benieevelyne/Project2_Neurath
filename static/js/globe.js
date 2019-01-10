@@ -92,28 +92,3 @@ viewer.camera.flyTo({
     }
 });
 
-noshare = d3.select("#noShare")
-
-noshare.on('click', function(){
-    console.log(viewer.dataSources.length);
-    if (viewer.dataSources.length == 2) {
-        viewer.dataSources.removeAll();
-        buildMap(slider.value)
-    } else {
-
-    var promise2 = Cesium.GeoJsonDataSource.load('/static/data/noshare.geo.json');
-    promise2.then(function(noshares) {
-        viewer.dataSources.add(noshares);
-        //Get the array of entities
-        var entities = noshares.entities.values;
-
-
-
-        for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];      
-            entity.polygon.material = Cesium.Color.black
-            entity.polygon.extrudedHeight == 100;
-            entity.polygon.outline = false;
-        };
-            });
-            }})

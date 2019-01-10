@@ -10,8 +10,8 @@ from flask import(
     render_template,
     jsonify
 )
-# from flask_pymongo import PyMongo
-# from config import MONGOUSER , MONGOPASS
+from flask_pymongo import PyMongo
+from config import  MONGOPASS
 
 # Database Setup
 engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
@@ -44,9 +44,9 @@ session = Session(engine)
 
 app = Flask(__name__)
 
-# app.config['MONGO_DBNAME'] = 'traffickingdb'
-# app.config['MONGO_URI'] = 'mongodb://' + MONGOUSER +' :<' + MONGOPASS + '>@ds151814.mlab.com:51814/traffickingdb'
-# mongo = PyMongo(app)
+
+app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/TraffickDB?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
+mongo = PyMongo(app)
 
 # create route to return possible gender options for select menu
 
@@ -64,7 +64,18 @@ def fetch_country():
     return jsonify(country_list)
 
 
-#
+## create route to return globe data by year
+@app.route('/fetch_year/<year>')
+def fetch_year(year):
+    # get possible country name values
+    geojson = {'type':'FeatureCollection', 'features':[]}
+    response = mongo.db.trafficking.find({'properties.Year' : year})
+    for country in response:
+        print('country found')
+        geojson['features'].append(country)
+
+    # return response object
+    return jsonify(geojson)
 
 # # create route to return data for charts
 

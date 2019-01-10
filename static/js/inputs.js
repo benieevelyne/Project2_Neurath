@@ -11,7 +11,8 @@ var IntervalId = null
 slider.oninput = function() {
     label.html(`<h1><b>${slider.value}</b></h1>`)
     if (isplaying == true) {stop(IntervalId)};
-    buildMap(slider.value)
+    history.pushState(null, '', '/fetch_year/'+ slider.value);
+
 };
 
 
