@@ -17,4 +17,4 @@ Flask-PyMongo==2.2.0
 dnspython==1.16.0
 
 gunicorn==19.9.0
-flask_pymongo
+

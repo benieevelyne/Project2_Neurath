@@ -67,7 +67,6 @@ def fetch_country():
 ## create route to return globe data by year
 @app.route('/fetch_year/<year>')
 def fetch_year(year):
-    # get possible country name values
     geojson = {'type':'FeatureCollection', 'features':[]}
     response = mongo.db.trafficking.find({'properties.Year' : year})
     for country in response:
