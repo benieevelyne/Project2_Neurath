@@ -49,6 +49,15 @@ def fetch_year(year):
        geojson['features'].append(feature)
     return dumps(geojson)
 
+
+@app.route('/nodata')
+def fetch_nodata():
+    geojson = {'type':'FeatureCollection', 'features':[]}
+    response = mongo.db.Trafficking_GeoData.find({'properties.TraffickingStats': 'None'})
+    for feature in response:
+       geojson['features'].append(feature)
+    return dumps(geojson)
+
 # # create route to return data for charts
 
 # #Evelyne - Create stacked bar 

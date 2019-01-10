@@ -32,7 +32,7 @@ function buildMap(year) {
                     } else {
                         entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 10000;
                         objColor = entity.properties.color._value;
-
+                        entity.desription = "Chum Bucket"
                         entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5);
                         entity.polygon.outline = false;
 

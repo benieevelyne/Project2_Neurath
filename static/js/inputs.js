@@ -48,19 +48,22 @@ noshare.on('click', function(){
         viewer.dataSources.removeAll();
         buildMap(slider.value)
     } else {
+    
+    var url = `nodata`;
+    d3.json(url).then(function(response) {
+        var promise2 = Cesium.GeoJsonDataSource.load(response);
+        promise2.then(function(noshares) {
+            viewer.dataSources.add(noshares);
+            var entities = noshares.entities.values;
 
-    var promise2 = Cesium.GeoJsonDataSource.load('/static/data/noshare.geo.json');
-    promise2.then(function(noshares) {
-        viewer.dataSources.add(noshares);
-        var entities = noshares.entities.values;
 
-
-        for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];      
-            entity.polygon.material = Cesium.Color.black
-            entity.polygon.extrudedHeight == 100;
-            entity.polygon.outline = false;
-        };
+            for (var i = 0; i < entities.length; i++) {
+                var entity = entities[i];      
+                entity.polygon.material = Cesium.Color.black
+                entity.polygon.extrudedHeight == 100;
+                entity.polygon.outline = false;
+            }
+        });
     });
     };
 });
