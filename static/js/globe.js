@@ -42,7 +42,7 @@ function buildMap(year) {
                 if ( entity.properties.TraffickingStats._value == "None") {
                     destroy(entity);
                 } else {
-                    entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
+                    entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 10000;
                     objColor = entity.properties.color._value;
 
                     entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5);
