@@ -14,7 +14,7 @@ from flask import(
 # immport
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
-from config import  MONGOPASS
+# from config import  MONGOPASS
 
 # Database Setup
 app = Flask(__name__)
