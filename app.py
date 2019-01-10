@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -15,6 +16,9 @@ from flask import(
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 # from config import  MONGOPASS
+
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['MONGOPASS'])
 
 # Database Setup
 app = Flask(__name__)

@@ -1,3 +1,5 @@
+S3Handler = new S3Handler(System.getenv("API_TOKEN"))
+
 
 Cesium.Ion.defaultAccessToken = API_TOKEN
 
