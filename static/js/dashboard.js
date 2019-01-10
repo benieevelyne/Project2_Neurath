@@ -88,13 +88,13 @@ d3.json(url).then(function(response) {
     var layout = {
         barmode: 'stack',
         xaxis: {
-            title: 'Country',
+            title: 'Year',
             tickangle: -45
         },
         yaxis: {
-            title: 'migration data'
+            title: 'Migration Population'
         },
-        title: 'migration data per Country'
+        title: 'Migration Population over period of 1990 - 2017 by Age Group'
     };
 
 //Create plot
