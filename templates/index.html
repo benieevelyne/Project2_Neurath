@@ -89,7 +89,9 @@
     <div id="globebox">
 
       <div id="cesiumContainer">
+       
           <div id="timeline">
+                  <button type="button" id="noShare" class="btn btn-info">No Data Shared</button>
      
               <button type="button" id="goTime" class="btn btn-info">
                       <i class="fas fa-play-circle"></i>
@@ -97,8 +99,8 @@
                   </button>  
               <form>
                   <div class="form-group">
-                      <label for="formControlRange" id="timesliderlabel"><h1><b>1990</b></h1></label>
-                      <input type="range" class="form-control-range" id="timeSlider" min="1990" max="2018" step="1" value="1990">
+                      <label for="formControlRange" id="timesliderlabel"><h1><b>2002</b></h1></label>
+                      <input type="range" class="form-control-range" id="timeSlider" min="2002" max="2018" step="1" value="1990">
                   </div>
               </form>
            </div>
@@ -318,13 +320,15 @@
 
       <!-- Globe Dependencies -->
       <script src="{{ url_for('static', filename='js/config.js') }}"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
       <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/inputs.js') }}"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-      <script src="{{ url_for('static', filename='js/inputs.js') }}"></script>
 
 </body>
 

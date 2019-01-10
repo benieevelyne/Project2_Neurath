@@ -4,12 +4,14 @@ var goTime = d3.select('#goTime');
 
 
 
+
 var isplaying = false
 var IntervalId = null
 
 slider.oninput = function() {
     label.html(`<h1><b>${slider.value}</b></h1>`)
-    if (isplaying == true) {stop(IntervalId)};  
+    if (isplaying == true) {stop(IntervalId)};
+    buildMap(slider.value)
 };
 
 
@@ -18,6 +20,7 @@ go = function() {
     console.log(slider.value)
     slider.value ++;
     label.html(`<h1><b>${slider.value}</b></h1>`);
+    buildMap(slider.value)
 
 };
 
@@ -35,7 +38,7 @@ goTime.on('click', function(){
         console.log('playing')
         goTime.html("<i class='fas fa-pause-circle'></i><span>Pause Animation</span>");
 
-       IntervalId = setInterval(go, 1000);   
+       IntervalId = setInterval(go, 5000);   
          
         
         } else {

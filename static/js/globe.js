@@ -20,63 +20,100 @@ var clock = new Cesium.Clock({
 
 
 
-
-var promise = Cesium.GeoJsonDataSource.load('/static/data/globe2.geo.json');
-
-
-promise.then(function(dataSource) {
-    viewer.dataSources.add(dataSource);
+function buildMap(year) {
+    viewer.dataSources.removeAll();
+    viewer.entities.removeAll();
+    var promise = Cesium.GeoJsonDataSource.load('/static/data/globe' + year + '.geo.json');
 
 
+    promise.then(function(dataSource) {
+
+        viewer.dataSources.add(dataSource);
 
 
+
+
+            //Get the array of entities
+            var entities = dataSource.entities.values;
+
+
+            for (var i = 0; i < entities.length; i++) {
+                var entity = entities[i];            
+                if ( entity.properties.TraffickingStats._value == "None") {
+                    destroy(entity);
+                } else {
+                    entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
+                    objColor = entity.properties.color._value;
+
+                    entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5);
+                    entity.polygon.outline = false;
+                    // entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval._value);
+                if (entity.properties.arrowPath._value.length != 0) {
+                    console.log(entity.properties.arrowPath._value.length);
+
+                    for (var n = 0; n < (entity.properties.arrowPath._value.length / 4); n++) {
+
+                        if (entity.properties.arrowPath._value.length > 4)
+                        {arrow = entity.properties.arrowPath._value[n]} 
+                        else {arrow = entity.properties.arrowPath._value};
+
+                        if (arrow[3] > 100) {
+                            weight = 100}
+                        else {weight = arrow[3]};
+                                        }
+                        viewer.entities.add({
+                                name :  String(arrow[3]) + "Trafficked to" + String(arrow[0]) ,
+                                polyline : {
+                                    clampToGround : false,
+                                    positions : Cesium.Cartesian3.fromDegreesArray([arrow[1][0], arrow[1][1],arrow[2][0],arrow[2][1]]),
+                                    width : weight,
+                                    material : new Cesium.PolylineArrowMaterialProperty(Cesium.Color.WHITE)
+                                }
+                        });
+                    }
+                    }}      
+                });
+                    
+                };
+     
+
+buildMap(2002);
+
+
+
+
+
+
+viewer.camera.flyTo({
+    destination : Cesium.Cartesian3.fromDegrees(50.00, 46.25, 8000000.0),
+    orientation : {
+        right: new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339),
+        roll : 0.0
+    }
+});
+
+noshare = d3.select("#noShare")
+
+noshare.on('click', function(){
+    console.log(viewer.dataSources.length);
+    if (viewer.dataSources.length == 2) {
+        viewer.dataSources.removeAll();
+        buildMap(slider.value)
+    } else {
+
+    var promise2 = Cesium.GeoJsonDataSource.load('/static/data/noshare.geo.json');
+    promise2.then(function(noshares) {
+        viewer.dataSources.add(noshares);
         //Get the array of entities
-        var entities = dataSource.entities.values;
+        var entities = noshares.entities.values;
 
-        console.log("Total Entities: " + entities.length);
+
+
         for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];            
-            entity.polygon.extrudedHeight = entity.properties.TraffickingStats._value.Total * 1000;
-            objColor = entity.properties.color._value;
-        
-            entity.polygon.material = Cesium.Color.fromCssColorString(objColor).withAlpha(0.5)
+            var entity = entities[i];      
+            entity.polygon.material = Cesium.Color.black
+            entity.polygon.extrudedHeight == 100;
             entity.polygon.outline = false;
-                   
-            // entity.availability = Cesium.TimeInterval.fromIso8601(entity.properties.Interval._value);    
-
-
         };
-  
-    });
-
-
-
-// viewer.camera.flyTo({
-//     destination : Cesium.Cartesian3.fromDegrees(-122.19, 46.25, 8000000.0),
-//     orientation : {
-//         right: new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339),
-//         roll : 0.0
-//     }
-// });
-
-
-
-
-// console.log(viewer.entities._entities);  //SHOWS ALL THE ENTITIES I WOULD EXPECT
-
-// var orangeOutlined = viewer.entities.add({
-//     name : 'Orange line with black outline at height and following the surface',
-//     polyline : {
-//         clampToGround : true,
-//         positions : Cesium.Cartesian3.fromDegreesArrayHeights([-100, 39, 2500000,
-//                                                                -125, -39, 2500000]),
-//         width : 25,
-//         material : new Cesium.PolylineOutlineMaterialProperty({
-//             color : Cesium.Color.ORANGE,
-//             outlineWidth : 2,
-//             outlineColor : Cesium.Color.BLACK
-//         })
-//     }
-// });
-
- 
+            });
+            }})

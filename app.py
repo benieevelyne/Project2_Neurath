@@ -10,6 +10,8 @@ from flask import(
     render_template,
     jsonify
 )
+# from flask_pymongo import PyMongo
+# from config import MONGOUSER , MONGOPASS
 
 # Database Setup
 engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
@@ -41,6 +43,10 @@ session = Session(engine)
 #    print(column["name"], column["type"])
 
 app = Flask(__name__)
+
+# app.config['MONGO_DBNAME'] = 'traffickingdb'
+# app.config['MONGO_URI'] = 'mongodb://' + MONGOUSER +' :<' + MONGOPASS + '>@ds151814.mlab.com:51814/traffickingdb'
+# mongo = PyMongo(app)
 
 # create route to return possible gender options for select menu
 
