@@ -8,10 +8,13 @@ from sqlalchemy import create_engine, func, inspect, distinct
 from flask import(
     Flask,
     render_template,
-    jsonify
+    jsonify,
+    json
 )
+# immport
 from flask_pymongo import PyMongo
-# from config import  MONGOPASS
+from bson.json_util import dumps
+from config import  MONGOPASS
 
 # Database Setup
 engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
@@ -64,19 +67,17 @@ def fetch_country():
     return jsonify(country_list)
 
 
+
+
+
 ## create route to return globe data by year
 @app.route('/fetch_year/<year>')
 def fetch_year(year):
     geojson = {'type':'FeatureCollection', 'features':[]}
     response = mongo.db.trafficking.find({'properties.Year': int(year)})
-    print(response)
     for feature in response:
-        print('country found')
-        geojson['features'].append(feature)
-    # geojson = mongo.db.trafficking.find_one()
-    # print(geojson)
-    # return response object
-    return jsonify(geojson)
+       geojson['features'].append(feature)
+    return dumps(geojson)
 
 # # create route to return data for charts
 
