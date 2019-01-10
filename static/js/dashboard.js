@@ -26,7 +26,7 @@ function countries (){
 countrieslist = countries();
 console.log(countrieslist)
 //select is typically for things that you haven't created yet.
-var countrydropdown = d3.selectAll('#countrySelectStackedBar').data(countrieslist).enter().append('option').attr('value', d=> d).text(d=> d);
+// var countrydropdown = d3.selectAll('#countryS    electStackedBar').data(countrieslist).enter().append('option').attr('value', d=> d).text(d=> d);
 function optionChangedStackedBar(country) {
     
     //set url for flask route using select objects

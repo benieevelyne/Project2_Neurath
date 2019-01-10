@@ -76,7 +76,7 @@ def fetch_nodata():
 
 @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
 def list_migration(country):
-    results = mongo.db.Migration_Counts.find({'countries_of_destination' : country})
+    results = mongo.db.Migration_Counts.find({'Destination' : country})
 
     countries = []
     for result in results:
@@ -85,7 +85,7 @@ def list_migration(country):
             "TotalYouth":  int(result.TotalYouth),
             "TotalAdult":  int(result.TotalAdult),
             "TotalElder":  int(result.TotalElder),
-            # "countries_of_destination": result.countries_of_destination,
+            # "countrieY_of_destination": result.countries_of_destination,
         })
     return jsonify(countries)
 
