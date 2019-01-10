@@ -31,7 +31,7 @@ h1 {
 
 #cesiumContainer {
   width: 90vw; height: 75vh;
-
+  position: relative;
   padding: 0; overflow: hidden;
   font-family: sans-serif; color: #edffff;
   display: block;
@@ -46,8 +46,8 @@ h1 {
 #timeline{
   width: 200px;
   display: inline-block;
-  position: relative;
-  /* margin-left: 1vw; */
+  position: absolute;
+  margin: 1vw;
 
   z-index: 50;
 }

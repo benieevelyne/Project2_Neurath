@@ -2,9 +2,6 @@ var slider = document.getElementById("timeSlider");
 var label = d3.select("#timesliderlabel");
 var goTime = d3.select('#goTime');
 
-
-
-
 var isplaying = false
 var IntervalId = null
 
@@ -12,9 +9,7 @@ slider.oninput = function() {
     label.html(`<h1><b>${slider.value}</b></h1>`)
     if (isplaying == true) {stop(IntervalId)};
     buildMap(slider.value);
-
 };
-
 
 
 go = function() {
@@ -22,7 +17,6 @@ go = function() {
     slider.value ++;
     label.html(`<h1><b>${slider.value}</b></h1>`);
     buildMap(slider.value)
-
 };
 
 stop = function(IntervalId) {
@@ -41,7 +35,6 @@ goTime.on('click', function(){
 
        IntervalId = setInterval(go, 5000);   
          
-        
         } else {
             stop(IntervalId)
         };
@@ -59,9 +52,7 @@ noshare.on('click', function(){
     var promise2 = Cesium.GeoJsonDataSource.load('/static/data/noshare.geo.json');
     promise2.then(function(noshares) {
         viewer.dataSources.add(noshares);
-        //Get the array of entities
         var entities = noshares.entities.values;
-
 
 
         for (var i = 0; i < entities.length; i++) {
@@ -70,5 +61,6 @@ noshare.on('click', function(){
             entity.polygon.extrudedHeight == 100;
             entity.polygon.outline = false;
         };
-            });
-            }})
+    });
+    };
+});
