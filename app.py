@@ -28,11 +28,10 @@ mongo = PyMongo(app)
 def fetch_country():
     # get possible country name values
     country_list = []
-    response = mongo.db.Migration_Counts.distinct('countries_of_destination', {})
+    response = mongo.db.Migration_Counts.distinct('Destination')
     # response = session.query(distinct(migration_age_group.countries_of_destination)).order_by(migration_age_group.countries_of_destination).all()
     for country in response:
         country_list.append(country)
-
     # return response object
     return jsonify(country_list)
 
