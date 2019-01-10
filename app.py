@@ -11,7 +11,7 @@ from flask import(
     jsonify
 )
 from flask_pymongo import PyMongo
-# from config import  MONGOPASS
+from config import  MONGOPASS
 
 # Database Setup
 engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
@@ -68,11 +68,13 @@ def fetch_country():
 @app.route('/fetch_year/<year>')
 def fetch_year(year):
     geojson = {'type':'FeatureCollection', 'features':[]}
-    response = mongo.db.trafficking.find({'properties.Year' : year})
-    for country in response:
+    response = mongo.db.trafficking.find({'properties.Year': int(year)})
+    print(response)
+    for feature in response:
         print('country found')
-        geojson['features'].append(country)
-
+        geojson['features'].append(feature)
+    # geojson = mongo.db.trafficking.find_one()
+    # print(geojson)
     # return response object
     return jsonify(geojson)
 

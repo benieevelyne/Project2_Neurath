@@ -15,6 +15,7 @@ Werkzeug==0.14.1
 pymongo==3.7.2
 Flask-PyMongo==2.2.0
 dnspython==1.16.0
+sqlite3==3.23.1
 
 gunicorn==19.9.0
 
