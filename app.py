@@ -28,7 +28,7 @@ mongo = PyMongo(app)
 def fetch_country():
     # get possible country name values
     country_list = []
-    response = mongo.db.Migration_Counts.distinct('countries_of_destination')
+    response = mongo.db.Migration_Counts.distinct('countries_of_destination', {})
     # response = session.query(distinct(migration_age_group.countries_of_destination)).order_by(migration_age_group.countries_of_destination).all()
     for country in response:
         country_list.append(country)
@@ -65,47 +65,19 @@ def fetch_year(year):
 
 
 
-# @app.route("/api/data")
-# def list_pets():
-#     results = db.session.query(Pet.nickname, Pet.age).all()
-
-#     pets = []
-#     for result in results:
-#         pets.append({
-#             "nickname": result[0],
-#             "age": result[1]
-#         })
-#     return jsonify(pets)
-
-
-# @app.route("/")
-# def home():
-    
-#     return "Welcome!"
-
-
-# if __name__ == "__main__":
-#     app.run()
 
 @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
 def list_migration(country):
-    results = session \
-        .query(
-            migration_age_group.years, 
-            migration_age_group.TotalYouth, 
-            migration_age_group.TotalAdult, 
-            migration_age_group.TotalElder, 
-            migration_age_group.countries_of_destination) \
-        .filter(migration_age_group.countries_of_destination == country) \
-        .all()
+    results = mongo.db.Migration_Counts.find({'countries_of_destination' : country})
+
     countries = []
     for result in results:
         countries.append({
-            "years": result[0],
-            "TotalYouth": result[1],
-            "TotalAdult": result[2],
-            "TotalElder": result[3],
-            "countries_of_destination": result[4],
+            "years": int(result.Years),
+            "TotalYouth":  int(result.TotalYouth),
+            "TotalAdult":  int(result.TotalAdult),
+            "TotalElder":  int(result.TotalElder),
+            # "countries_of_destination": result.countries_of_destination,
         })
     return jsonify(countries)
 

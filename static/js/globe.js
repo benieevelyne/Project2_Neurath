@@ -37,7 +37,6 @@ function buildMap(year) {
                         entity.polygon.outline = false;
 
                     if (entity.properties.arrowPath._value.length != 0) {
-                        console.log(entity.properties.arrowPath._value.length);
 
                         for (var n = 0; n < (entity.properties.arrowPath._value.length / 4); n++) {
 
