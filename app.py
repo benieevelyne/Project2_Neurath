@@ -11,7 +11,7 @@ from flask import(
     jsonify
 )
 from flask_pymongo import PyMongo
-from config import  MONGOPASS
+# from config import  MONGOPASS
 
 # Database Setup
 engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
