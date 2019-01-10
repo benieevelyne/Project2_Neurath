@@ -1,5 +1,9 @@
-S3Handler = new S3Handler(System.getenv("API_TOKEN"))
+const aws = require('aws-sdk');
 
+let s3 = new aws.S3({
+    API_TOKEN: process.env.API_TOKEN,
+//   secretAccessKey: process.env.S3_SECRET
+});
 
 Cesium.Ion.defaultAccessToken = API_TOKEN
 
