@@ -114,6 +114,7 @@ def fetch_year(year):
 
 # if __name__ == "__main__":
 #     app.run()
+Dbtest1 = Base.classes.trafficking_age_group
 
 @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
 def list_migration(country):
@@ -136,6 +137,30 @@ def list_migration(country):
             "countries_of_destination": result[4],
         })
     return jsonify(countries)
+
+
+
+
+
+
+@app.route("/countries")
+def countries():
+    
+    # Query all passengers
+    results = session.query(Dbtest1).all()
+    # results = session.query(Dbtest1).all()
+    # Create a dictionary from the row data and append to a list of all_passengers
+    all_countries = []
+    for trafficking_age_group in results:
+        country_dict = {}
+        country_dict["Year"] = trafficking_age_group.years
+        country_dict["CountryOfExploitation"] = trafficking_age_group.CountryOfExploitation
+        country_dict["gender"] = trafficking_age_group.gender
+        country_dict["ageBroad"] = trafficking_age_group.ageBroad
+        country_dict["Count"] = trafficking_age_group.count
+        all_countries.append(country_dict)
+    return jsonify(all_countries)
+
 
 # create route that renders index.html template
 @app.route("/")
