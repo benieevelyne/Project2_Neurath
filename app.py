@@ -159,6 +159,7 @@ def countries():
         country_dict["ageBroad"] = trafficking_age_group.ageBroad
         country_dict["Count"] = trafficking_age_group.count
         all_countries.append(country_dict)
+        
     return jsonify(all_countries)
 
 
