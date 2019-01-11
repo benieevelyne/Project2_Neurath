@@ -130,8 +130,3 @@ d3.json(url).then(function(response) {
 
 
 
-
-
-
-       
-
