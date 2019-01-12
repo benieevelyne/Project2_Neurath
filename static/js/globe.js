@@ -1,4 +1,6 @@
 
+
+apiKey = null
 d3.json("/SuperSecretKey").then(function(response) {
     apiKey = response
     return apiKey
