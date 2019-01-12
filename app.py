@@ -17,8 +17,8 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 # from config import  MONGOPASS
 
-from boto.s3.connection import S3Connection
-MONGOPASS = S3Connection(os.environ['MONGOPASS'])
+# from boto.s3.connection import S3Connection
+MONGOPASS = os.environ.get('MONGOPASS')
 
 # Database Setup
 app = Flask(__name__)
