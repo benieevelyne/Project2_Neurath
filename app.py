@@ -94,6 +94,11 @@ def list_migration(country):
         })
     return jsonify(countries)
 
+
+@app.route("/SuperSecretKey")
+def secretKey():
+    return jsonify(API_TOKEN)
+
 # create route that renders index.html template
 @app.route("/")
 def home():
