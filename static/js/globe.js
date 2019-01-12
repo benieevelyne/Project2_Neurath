@@ -1,17 +1,19 @@
 
+var viewer = new Cesium.Viewer('cesiumContainer', {
+    animation : false,
+    timeline : false,
+ });
 
-apiKey = null
+
 d3.json("/SuperSecretKey").then(function(response) {
     apiKey = response
-    return apiKey
-});
-console.log(apiKey)
+
+
+
 Cesium.Ion.defaultAccessToken = apiKey;
 
-var viewer = new Cesium.Viewer('cesiumContainer', {
-    animation : true,
-    timeline : true,
- });
+});
+
 
 
 
