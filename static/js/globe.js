@@ -1,11 +1,6 @@
-const aws = require('aws-sdk');
 
-let s3 = new aws.S3({
-    API_TOKEN: process.env.API_TOKEN,
-//   secretAccessKey: process.env.S3_SECRET
-});
 
-Cesium.Ion.defaultAccessToken = API_TOKEN
+Cesium.Ion.defaultAccessToken = process.env.API_TOKEN
 
 
  var viewer = new Cesium.Viewer('cesiumContainer', {
@@ -17,6 +12,7 @@ Cesium.Ion.defaultAccessToken = API_TOKEN
 
 
 function buildMap(year) {
+    console.log(year)
     viewer.dataSources.removeAll();
     viewer.entities.removeAll();
 
@@ -42,12 +38,6 @@ function buildMap(year) {
                         entity.polygon.outline = false;
 
 
-                    var infobox = d3.select('#cesium-infoBox-defaultTable');
-                    var rows = infobox.selectAll('tr');
-                    // for (row in rows) {
-                    //     console.log(row)
-                    // }
-                    console.log(row.html)
                     
 
                 

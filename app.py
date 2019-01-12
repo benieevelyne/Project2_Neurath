@@ -18,7 +18,7 @@ from bson.json_util import dumps
 # from config import  MONGOPASS
 
 from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['MONGOPASS'])
+MONGOPASS = S3Connection(os.environ['MONGOPASS'])
 
 # Database Setup
 app = Flask(__name__)
@@ -46,7 +46,7 @@ def fetch_country():
 ## create route to return globe data by year
 @app.route('/fetch_year/<year>')
 def fetch_year(year):
-    geojson = {'type':'FeatureCollection', 'features':[]}
+    geojson = {     'type':'FeatureCollection', 'features':[]}
     response = mongo.db.Trafficking_GeoData.find({'properties.Year': int(year)})
     for feature in response:
        geojson['features'].append(feature)
