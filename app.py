@@ -19,6 +19,7 @@ from bson.json_util import dumps
 
 # from boto.s3.connection import S3Connection
 MONGOPASS = os.environ.get('MONGOPASS')
+API_TOKEN = os.environ.get('API_TOKEN')
 
 # Database Setup
 app = Flask(__name__)
