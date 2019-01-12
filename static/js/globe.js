@@ -5,8 +5,8 @@ apiKey = d3.json("/SuperSecretKey").then(function(response) {
 Cesium.Ion.defaultAccessToken = apiKey;
 
 var viewer = new Cesium.Viewer('cesiumContainer', {
-    animation : false,
-    timeline : false,
+    animation : true,
+    timeline : true,
  });
 
 
