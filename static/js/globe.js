@@ -2,11 +2,12 @@
 
 const aws = require('aws-sdk');
 
-let API_TOKEN = new aws.S3({
+let s3 = new aws.S3({
     API_TOKEN: process.env.API_TOKEN,
+
 });
 
-Cesium.Ion.defaultAccessToken = process.env.API_TOKEN
+Cesium.Ion.defaultAccessToken = process.env.s3.API_TOKEN
 
 
  var viewer = new Cesium.Viewer('cesiumContainer', {
