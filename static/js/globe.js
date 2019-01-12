@@ -1,5 +1,7 @@
-apiKey = d3.json("/SuperSecretKey").then(function(response) {
-    return response
+
+d3.json("/SuperSecretKey").then(function(response) {
+    apiKey = response
+    return apiKey
 });
 console.log(apiKey)
 Cesium.Ion.defaultAccessToken = apiKey;
