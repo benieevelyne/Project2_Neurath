@@ -14,39 +14,40 @@ slider.oninput = function() {
 
 go = function() {
     console.log(slider.value)
-    slider.value ++;
+    if (slider.value == 2018) {
+        slider.value = 2002;
+    } else {
+        slider.value ++;
+    };
     label.html(`<h1><b>${slider.value}</b></h1>`);
-    buildMap(slider.value)
+    buildMap(slider.value);
 };
 
 stop = function(IntervalId) {
-    isplaying = false
+    isplaying = false;
     clearInterval(IntervalId);
-    console.log('paused')
     goTime.html("<i class='fas fa-play-circle'></i><span>Play Animation</span>");
 }
 
 goTime.on('click', function(){
 
     if (isplaying == false){
-        isplaying = true
-        console.log('playing')
+        isplaying = true;
         goTime.html("<i class='fas fa-pause-circle'></i><span>Pause Animation</span>");
-
        IntervalId = setInterval(go, 5000);   
          
         } else {
-            stop(IntervalId)
+            stop(IntervalId);
         };
 });
 
-noshare = d3.select("#noShare")
+noshare = d3.select("#noShare");
 
 noshare.on('click', function(){
     console.log(viewer.dataSources.length);
     if (viewer.dataSources.length == 2) {
         viewer.dataSources.removeAll();
-        buildMap(slider.value)
+        buildMap(slider.value);
     } else {
     
     var url = `nodata`;
@@ -59,7 +60,7 @@ noshare.on('click', function(){
 
             for (var i = 0; i < entities.length; i++) {
                 var entity = entities[i];      
-                entity.polygon.material = Cesium.Color.black
+                entity.polygon.material = Cesium.Color.black;
                 entity.polygon.extrudedHeight == 100;
                 entity.polygon.outline = false;
             }
