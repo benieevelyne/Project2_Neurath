@@ -1,9 +1,4 @@
 
-var viewer = new Cesium.Viewer('cesiumContainer', {
-    animation : false,
-    timeline : false,
- });
-
 
 d3.json("/SuperSecretKey").then(function(response) {
     apiKey = response
@@ -14,6 +9,11 @@ Cesium.Ion.defaultAccessToken = apiKey;
 
 });
 
+
+var viewer = new Cesium.Viewer('cesiumContainer', {
+    animation : false,
+    timeline : false,
+ });
 
 
 
