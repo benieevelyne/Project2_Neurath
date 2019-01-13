@@ -45,12 +45,12 @@ noshare = d3.select("#noShare");
 
 noshare.on('click', function(){
     console.log(viewer.dataSources.length);
-    if (viewer.dataSources.length == 2) {
+    if (viewer.dataSources.length > 1) {
         viewer.dataSources.removeAll();
         buildMap(slider.value);
     } else {
     
-    var url = `nodata`;
+    var url = `/nodata`;
     d3.json(url).then(function(response) {
         var promise2 = Cesium.GeoJsonDataSource.load(response);
         promise2.then(function(noshares) {
