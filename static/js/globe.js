@@ -92,9 +92,3 @@ viewer.camera.flyTo({
 });
 
 buildMap(2002);
-
-//Show a pop-up alert if we encounter an error when processing a dropped file
-viewer.dropError.addEventListener(function(dropHandler, name, error) {
-    console.log(error);
-    window.alert(error);
-});
