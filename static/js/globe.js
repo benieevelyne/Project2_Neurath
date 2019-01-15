@@ -1,16 +1,24 @@
 
-Cesium.Ion.defaultAccessToken = API_TOKEN
+
+d3.json("/SuperSecretKey").then(function(response) {
+    apiKey = response
 
 
- var viewer = new Cesium.Viewer('cesiumContainer', {
+
+Cesium.Ion.defaultAccessToken = apiKey;
+
+});
+
+
+var viewer = new Cesium.Viewer('cesiumContainer', {
     animation : false,
     timeline : false,
  });
 
 
 
-
 function buildMap(year) {
+    console.log(year)
     viewer.dataSources.removeAll();
     viewer.entities.removeAll();
 
@@ -36,12 +44,6 @@ function buildMap(year) {
                         entity.polygon.outline = false;
 
 
-                    var infobox = d3.select('#cesium-infoBox-defaultTable');
-                    var rows = infobox.selectAll('tr');
-                    // for (row in rows) {
-                    //     console.log(row)
-                    // }
-                    console.log(row.html)
                     
 
                 
@@ -90,4 +92,3 @@ viewer.camera.flyTo({
 });
 
 buildMap(2002);
-

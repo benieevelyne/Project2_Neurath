@@ -51,7 +51,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-  <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
 
 </head>
 
@@ -77,7 +77,7 @@
           </li>
 
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="# globe">Globe</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#isotype">IsoType</a>
           </li>
         </ul>
       </div>
@@ -130,7 +130,7 @@
       <div id="cesiumContainer">
        
           <div id="timeline">
-                  <button type="button" id="noShare" class="btn btn-info">No Data Shared</button>
+                  <button type="button" id="noShare" class="btn btn-info">Toggle Unshared</button>
      
               <button type="button" id="goTime" class="btn btn-info">
                       <i class="fas fa-play-circle"></i>
@@ -377,9 +377,9 @@
 
           <li class="list-inline-item ">
             <a href="https://github.com/benieevelyne/Project2_Neurath">
-              <span class="fa-stack fa-lg ">
-                <i class="fa fa-circle fa-stack-2x "></i>
-                <i class="fa fa-github fa-stack-1x fa-inverse "></i>
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
 
             </a>
           </li>
@@ -454,7 +454,7 @@
 
 
       <!-- Globe Dependencies -->
-      <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+      <!-- <script src="{{ url_for('static', filename='js/config.js') }}"></script> -->
       <script src="{{ url_for('static', filename='js/globe.js') }}"></script>
       <script src="{{ url_for('static', filename='js/inputs.js') }}"></script>
 

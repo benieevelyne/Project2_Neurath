@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -14,7 +15,11 @@ from flask import(
 # immport
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
-from config import  MONGOPASS
+# from config import  MONGOPASS
+
+# from boto.s3.connection import S3Connection
+MONGOPASS = os.environ.get('MONGOPASS')
+API_TOKEN = os.environ.get('API_TOKEN')
 
 # Database Setup
 app = Flask(__name__)
@@ -42,7 +47,7 @@ def fetch_country():
 ## create route to return globe data by year
 @app.route('/fetch_year/<year>')
 def fetch_year(year):
-    geojson = {'type':'FeatureCollection', 'features':[]}
+    geojson = {     'type':'FeatureCollection', 'features':[]}
     response = mongo.db.Trafficking_GeoData.find({'properties.Year': int(year)})
     for feature in response:
        geojson['features'].append(feature)
@@ -88,6 +93,11 @@ def list_migration(country):
             # "countrieY_of_destination": result.countries_of_destination,
         })
     return jsonify(countries)
+
+
+@app.route("/SuperSecretKey")
+def secretKey():
+    return jsonify(API_TOKEN)
 
 # create route that renders index.html template
 @app.route("/")
