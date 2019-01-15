@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -8,44 +9,21 @@ from sqlalchemy import create_engine, func, inspect, distinct
 from flask import(
     Flask,
     render_template,
-    jsonify
+    jsonify,
+    json
 )
+# immport
 from flask_pymongo import PyMongo
-from config import  MONGOPASS
+from bson.json_util import dumps
+# from config import  MONGOPASS
+
+# from boto.s3.connection import S3Connection
+MONGOPASS = os.environ.get('MONGOPASS')
+API_TOKEN = os.environ.get('API_TOKEN')
 
 # Database Setup
-engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
-
-# reflect existing database into new model
-Base = automap_base()
-
-# reflect tables
-Base.prepare(engine, reflect=True)
-
-# save reference to tables
-migration = Base.classes.migration
-migration_age_group = Base.classes.migration_age_group
-trafficking_age_group = Base.classes.trafficking_age_group
-population = Base.classes.population
-gdp = Base.classes.gdp
-
-# create session to query tables
-session = Session(engine)
-
-# create inspector to get column names
-#inspector = inspect(engine)
-# Collect the names of tables within the database
-# print(inspector.get_table_names())
-
-# Using the inspector to print the column names within the 'migration' table and its types
-#columns = inspector.get_columns('migration')
-# for column in columns:
-#    print(column["name"], column["type"])
-
 app = Flask(__name__)
-
-
-app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/TraffickDB?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
+app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
 mongo = PyMongo(app)
 
 # create route to return possible gender options for select menu
@@ -55,27 +33,34 @@ mongo = PyMongo(app)
 def fetch_country():
     # get possible country name values
     country_list = []
-    response = session.query(distinct(migration_age_group.countries_of_destination)).order_by(migration_age_group.countries_of_destination).all()
+    response = mongo.db.Migration_Counts.distinct('Destination')
+    # response = session.query(distinct(migration_age_group.countries_of_destination)).order_by(migration_age_group.countries_of_destination).all()
     for country in response:
-        temp, = country
-        country_list.append(temp)
-
+        country_list.append(country)
     # return response object
     return jsonify(country_list)
+
+
+
 
 
 ## create route to return globe data by year
 @app.route('/fetch_year/<year>')
 def fetch_year(year):
-    # get possible country name values
-    geojson = {'type':'FeatureCollection', 'features':[]}
-    response = mongo.db.trafficking.find({'properties.Year' : year})
-    for country in response:
-        print('country found')
-        geojson['features'].append(country)
+    geojson = {     'type':'FeatureCollection', 'features':[]}
+    response = mongo.db.Trafficking_GeoData.find({'properties.Year': int(year)})
+    for feature in response:
+       geojson['features'].append(feature)
+    return dumps(geojson)
 
-    # return response object
-    return jsonify(geojson)
+
+@app.route('/nodata')
+def fetch_nodata():
+    geojson = {'type':'FeatureCollection', 'features':[]}
+    response = mongo.db.Trafficking_GeoData.find({'properties.TraffickingStats': 'None'})
+    for feature in response:
+       geojson['features'].append(feature)
+    return dumps(geojson)
 
 # # create route to return data for charts
 
@@ -93,6 +78,7 @@ def fetch_year(year):
 
 
 
+<<<<<<< HEAD
 # @app.route("/api/data")
 # def list_pets():
 #     results = db.session.query(Pet.nickname, Pet.age).all()
@@ -115,30 +101,26 @@ def fetch_year(year):
 # if __name__ == "__main__":
 #     app.run()
 Dbtest1 = Base.classes.trafficking_age_group
+=======
+>>>>>>> 30f627184c939693ce36b5f6d7505770bc87469c
 
 @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
 def list_migration(country):
-    results = session \
-        .query(
-            migration_age_group.years, 
-            migration_age_group.TotalYouth, 
-            migration_age_group.TotalAdult, 
-            migration_age_group.TotalElder, 
-            migration_age_group.countries_of_destination) \
-        .filter(migration_age_group.countries_of_destination == country) \
-        .all()
+    results = mongo.db.Migration_Counts.find({'Destination' : country})
+
     countries = []
     for result in results:
         countries.append({
-            "years": result[0],
-            "TotalYouth": result[1],
-            "TotalAdult": result[2],
-            "TotalElder": result[3],
-            "countries_of_destination": result[4],
+            "years": int(result.Years),
+            "TotalYouth":  int(result.TotalYouth),
+            "TotalAdult":  int(result.TotalAdult),
+            "TotalElder":  int(result.TotalElder),
+            # "countrieY_of_destination": result.countries_of_destination,
         })
     return jsonify(countries)
 
 
+<<<<<<< HEAD
 
 
 
@@ -162,6 +144,11 @@ def countries():
         
     return jsonify(all_countries)
 
+=======
+@app.route("/SuperSecretKey")
+def secretKey():
+    return jsonify(API_TOKEN)
+>>>>>>> 30f627184c939693ce36b5f6d7505770bc87469c
 
 # create route that renders index.html template
 @app.route("/")
