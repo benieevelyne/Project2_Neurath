@@ -23,10 +23,22 @@ API_TOKEN = os.environ.get('API_TOKEN')
 
 # Database Setup
 app = Flask(__name__)
-app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
+#app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
+app.config['MONGO_URI'] = "mongodb://traffickAdmin:y2U3gQBgiV8Kq2u@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
 mongo = PyMongo(app)
 
 # create route to return possible gender options for select menu
+
+engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
+
+# reflect existing database into new model
+Base = automap_base()
+
+# reflect tables
+Base.prepare(engine, reflect=True)
+
+
+session = Session(engine)
 
 
 @app.route('/fetch_country')
@@ -77,8 +89,6 @@ def fetch_nodata():
 
 
 
-
-<<<<<<< HEAD
 # @app.route("/api/data")
 # def list_pets():
 #     results = db.session.query(Pet.nickname, Pet.age).all()
@@ -101,28 +111,52 @@ def fetch_nodata():
 # if __name__ == "__main__":
 #     app.run()
 Dbtest1 = Base.classes.trafficking_age_group
-=======
->>>>>>> 30f627184c939693ce36b5f6d7505770bc87469c
+
+# @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
+# def list_migration(country):
+#     results = mongo.db.Migration_Counts.find({'Destination' : country})
+#     print("results is: "+ str(results) ) 
+#     countries = []
+#     for result in results:
+#         countries.append({
+#             "years": int(result.Years),
+#             "TotalYouth":  int(result.TotalYouth),
+#             "TotalAdult":  int(result.TotalAdult),
+#             "TotalElder":  int(result.TotalElder),
+#             # "countrieY_of_destination": result.countries_of_destination,
+#         })
+#     retval = json.dumps(countries)
+#     print("retval is: "+ str(retval) ) 
+#     return  jsonify(countries)
+
+
+
+migration_age_group = Base.classes.migration_age_group
 
 @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
 def list_migration(country):
-    results = mongo.db.Migration_Counts.find({'Destination' : country})
-
+    # print("country: "+ country)
+    results = session \
+        .query(
+            migration_age_group.years, 
+            migration_age_group.TotalYouth, 
+            migration_age_group.TotalAdult, 
+            migration_age_group.TotalElder, 
+            migration_age_group.countries_of_destination) \
+        .filter(migration_age_group.countries_of_destination == country) \
+        .all()
     countries = []
     for result in results:
         countries.append({
-            "years": int(result.Years),
-            "TotalYouth":  int(result.TotalYouth),
-            "TotalAdult":  int(result.TotalAdult),
-            "TotalElder":  int(result.TotalElder),
-            # "countrieY_of_destination": result.countries_of_destination,
+            "years": result[0],
+            "TotalYouth": result[1],
+            "TotalAdult": result[2],
+            "TotalElder": result[3],
+            "countries_of_destination": result[4],
         })
+    retval = json.dumps(countries)
+    # print("retval is: "+ str(retval) ) 
     return jsonify(countries)
-
-
-<<<<<<< HEAD
-
-
 
 
 @app.route("/countries")
@@ -144,11 +178,9 @@ def countries():
         
     return jsonify(all_countries)
 
-=======
 @app.route("/SuperSecretKey")
 def secretKey():
     return jsonify(API_TOKEN)
->>>>>>> 30f627184c939693ce36b5f6d7505770bc87469c
 
 # create route that renders index.html template
 @app.route("/")

@@ -56,7 +56,7 @@ d3.json(url).then(function(response) {
      var youthTrace = {
         x: yearData,
         y: youthData,
-        name: 'total youth',
+        name: 'Youth age: 0-19',
         type: 'bar',
         marker: {
             color: 'rgb(205, 127, 50)'
@@ -66,7 +66,7 @@ d3.json(url).then(function(response) {
     var adultTrace = {
         x: yearData,
         y: adultData,
-        name: 'total adult',
+        name: 'Adult age: 20-48',
         type: 'bar',
         marker: {
             color: 'rgb(192,192,192)'
@@ -76,7 +76,7 @@ d3.json(url).then(function(response) {
     var elderTrace = {
         x: yearData,
         y: elderData,
-        name: 'total elder',
+        name: 'Elder: 48+',
         type: 'bar',
         marker: {
             color: 'rgb(255,215,0)'
