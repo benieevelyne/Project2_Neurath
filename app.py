@@ -17,7 +17,7 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 # from config import  MONGOPASS
 
-# from boto.s3.connection import S3Connection
+
 MONGOPASS = os.environ.get('MONGOPASS')
 API_TOKEN = os.environ.get('API_TOKEN')
 
@@ -27,18 +27,6 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = "mongodb://traffickAdmin:y2U3gQBgiV8Kq2u@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
 mongo = PyMongo(app)
 
-# create route to return possible gender options for select menu
-
-engine = create_engine("sqlite:///db/Migrationdb.sqlite?check_same_thread=False")
-
-# reflect existing database into new model
-Base = automap_base()
-
-# reflect tables
-Base.prepare(engine, reflect=True)
-
-
-session = Session(engine)
 
 
 @app.route('/fetch_country')
@@ -74,109 +62,25 @@ def fetch_nodata():
        geojson['features'].append(feature)
     return dumps(geojson)
 
-# # create route to return data for charts
 
-# #Evelyne - Create stacked bar 
-# @app.route('/stacked_bar_chart/<country>')
-# def stacked_bar_chart(country):
-#     # filter by country
-#     print(country)
-#     return 'page is working!'
-# #    queries = []
-# #    if country != 'All Countries':
-# #        queries.append(migration_age_group.countries_of_destination == country)
-# #        
-
-
-
-# @app.route("/api/data")
-# def list_pets():
-#     results = db.session.query(Pet.nickname, Pet.age).all()
-
-#     pets = []
-#     for result in results:
-#         pets.append({
-#             "nickname": result[0],
-#             "age": result[1]
-#         })
-#     return jsonify(pets)
-
-
-# @app.route("/")
-# def home():
-    
-#     return "Welcome!"
-
-
-# if __name__ == "__main__":
-#     app.run()
-Dbtest1 = Base.classes.trafficking_age_group
-
-# @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
-# def list_migration(country):
-#     results = mongo.db.Migration_Counts.find({'Destination' : country})
-#     print("results is: "+ str(results) ) 
-#     countries = []
-#     for result in results:
-#         countries.append({
-#             "years": int(result.Years),
-#             "TotalYouth":  int(result.TotalYouth),
-#             "TotalAdult":  int(result.TotalAdult),
-#             "TotalElder":  int(result.TotalElder),
-#             # "countrieY_of_destination": result.countries_of_destination,
-#         })
-#     retval = json.dumps(countries)
-#     print("retval is: "+ str(retval) ) 
-#     return  jsonify(countries)
-
-
-
-migration_age_group = Base.classes.migration_age_group
 
 @app.route("/api/data/<country>") #Designate what the placeholder is // Below designate where the placeholder is
 def list_migration(country):
-    # print("country: "+ country)
-    results = session \
-        .query(
-            migration_age_group.years, 
-            migration_age_group.TotalYouth, 
-            migration_age_group.TotalAdult, 
-            migration_age_group.TotalElder, 
-            migration_age_group.countries_of_destination) \
-        .filter(migration_age_group.countries_of_destination == country) \
-        .all()
+
+    response = mongo.db.Migration_Counts.find({'Destination': country})
     countries = []
-    for result in results:
+    for result in response:
         countries.append({
-            "years": result[0],
-            "TotalYouth": result[1],
-            "TotalAdult": result[2],
-            "TotalElder": result[3],
-            "countries_of_destination": result[4],
-        })
-    retval = json.dumps(countries)
-    # print("retval is: "+ str(retval) ) 
+        "years": result['Year'],
+        "TotalYouth": result['TotalYouth'],
+        "TotalAdult": result['TotalAdult'],
+        "TotalElder": result['TotalElder'],
+        "countries_of_destination": result['Destination'],
+    })
+
     return jsonify(countries)
 
 
-@app.route("/countries")
-def countries():
-    
-    # Query all passengers
-    results = session.query(Dbtest1).all()
-    # results = session.query(Dbtest1).all()
-    # Create a dictionary from the row data and append to a list of all_passengers
-    all_countries = []
-    for trafficking_age_group in results:
-        country_dict = {}
-        country_dict["Year"] = trafficking_age_group.years
-        country_dict["CountryOfExploitation"] = trafficking_age_group.CountryOfExploitation
-        country_dict["gender"] = trafficking_age_group.gender
-        country_dict["ageBroad"] = trafficking_age_group.ageBroad
-        country_dict["Count"] = trafficking_age_group.count
-        all_countries.append(country_dict)
-        
-    return jsonify(all_countries)
 
 @app.route("/SuperSecretKey")
 def secretKey():
@@ -184,11 +88,8 @@ def secretKey():
 
 # create route that renders index.html template
 @app.route("/")
-def home():
-
-      
+def home():      
     return render_template("index.html")
-
 
 if __name__ == "__main__":
     app.run()
