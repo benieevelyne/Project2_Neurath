@@ -23,8 +23,8 @@ API_TOKEN = os.environ.get('API_TOKEN')
 
 # Database Setup
 app = Flask(__name__)
-#app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
-app.config['MONGO_URI'] = "mongodb://traffickAdmin:y2U3gQBgiV8Kq2u@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
+app.config['MONGO_URI'] = "mongodb://traffickAdmin:"+ MONGOPASS + "@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
+# app.config['MONGO_URI'] = "mongodb://traffickAdmin:MONGOPASS@traffickcluster-shard-00-00-xeuqd.mongodb.net:27017,traffickcluster-shard-00-01-xeuqd.mongodb.net:27017,traffickcluster-shard-00-02-xeuqd.mongodb.net:27017/Neurath?ssl=true&replicaSet=TraffickCluster-shard-0&authSource=admin&retryWrites=true"
 mongo = PyMongo(app)
 
 
