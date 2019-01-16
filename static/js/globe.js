@@ -91,4 +91,4 @@ viewer.camera.flyTo({
     }
 });
 
-buildMap(2018);
+buildMap(2017);
