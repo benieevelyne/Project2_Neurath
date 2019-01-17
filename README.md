@@ -3,10 +3,14 @@
 
 Link to app:
 https://traffickingdashboard.herokuapp.com/ 
+
+
 Running the code from app.py:
 To run the flask app type the following into the command line:
 python app.py
 Copy the local address listed into your browser and it will render the html page. 
+
+
 
 About and Project Goals:
 We explored the migration dataset and human trafficking dataset worldwide in multiple years. Using an interactive dashboard, we visualize the migration data on a global scale based on their GDP and countries of origin. We also analyzed the migration data by sorting people by age group and sex. Finally, we determined if the proliferation of human trafficking is different among gender groups and age groups.
